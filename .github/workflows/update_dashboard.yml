@@ -2,11 +2,10 @@ name: Update Vacantes Dashboard
 
 on:
   schedule:
-    # Corre todos los días a las 8am UTC (3 AM Colombia)
-    - cron: '0 8 * * *'
+    # Se ejecuta cada hora de 12:00 UTC a 23:00 UTC (7 AM - 6 PM COT)
+    # Solo de lunes a viernes (1-5)
+    - cron: '0 12-23 * * 1-5'
   workflow_dispatch: # Permite ejecución manual
-  repository_dispatch:
-    types: [sharepoint_updated]
 
 jobs:
   build:
