@@ -8,7 +8,7 @@ TENANT_ID = os.environ.get("MS_GRAPH_TENANT_ID")
 CLIENT_SECRET = os.environ.get("MS_GRAPH_CLIENT_SECRET")
 REFRESH_TOKEN = os.environ.get("MS_GRAPH_REFRESH_TOKEN")
 SHAREPOINT_SITE_ID = os.environ.get("SHAREPOINT_SITE_ID")
-FILE_PATH_IN_SHAREPOINT = os.environ.get("FILE_PATH_IN_SHAREPOINT", "General/Informe vacantes Auto.xlsx")
+FILE_PATH_IN_SHAREPOINT = os.environ.get("FILE_PATH_IN_SHAREPOINT", "Dashboard Vacantes/Informe vacantes Auto.xlsx")
 LOCAL_FILE_NAME = "Informe vacantes Auto.xlsx"
 
 def download_file():
