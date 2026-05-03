@@ -32,7 +32,7 @@ jobs:
           MS_GRAPH_CLIENT_SECRET: ${{ secrets.MS_GRAPH_CLIENT_SECRET }}
           MS_GRAPH_REFRESH_TOKEN: ${{ secrets.MS_GRAPH_REFRESH_TOKEN }}
           SHAREPOINT_SITE_ID: ${{ secrets.SHAREPOINT_SITE_ID }}
-          FILE_PATH_IN_SHAREPOINT: "General/Informe vacantes Auto.xlsx"
+          FILE_PATH_IN_SHAREPOINT: "Dashboard Vacantes/Informe vacantes Auto.xlsx"
         run: |
           python download_from_sharepoint.py
 
