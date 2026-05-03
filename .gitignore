@@ -1,0 +1,10 @@
+
+__pycache__/
+*.pyc
+.DS_Store
+~$*
+scratch/
+verify_dates.py
+inspect_excel.py
+# Opcional: Ignorar el Excel si prefieres que solo se descargue en el Action
+# Informe vacantes Auto.xlsx

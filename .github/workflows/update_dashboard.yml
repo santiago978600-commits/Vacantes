@@ -1,0 +1,53 @@
+name: Update Vacantes Dashboard
+
+on:
+  schedule:
+    # Corre todos los días a las 8am UTC (3 AM Colombia)
+    - cron: '0 8 * * *'
+  workflow_dispatch: # Permite ejecución manual
+  repository_dispatch:
+    types: [sharepoint_updated]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Descargar Excel desde SharePoint
+        env:
+          MS_GRAPH_CLIENT_ID: ${{ secrets.MS_GRAPH_CLIENT_ID }}
+          MS_GRAPH_TENANT_ID: ${{ secrets.MS_GRAPH_TENANT_ID }}
+          MS_GRAPH_CLIENT_SECRET: ${{ secrets.MS_GRAPH_CLIENT_SECRET }}
+          MS_GRAPH_REFRESH_TOKEN: ${{ secrets.MS_GRAPH_REFRESH_TOKEN }}
+          SHAREPOINT_SITE_ID: ${{ secrets.SHAREPOINT_SITE_ID }}
+          FILE_PATH_IN_SHAREPOINT: "General/Informe vacantes Auto.xlsx"
+        run: |
+          python download_from_sharepoint.py
+
+      - name: Procesar Datos y Consultar Gemini
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          EXCEL_PATH: "Informe vacantes Auto.xlsx"
+        run: |
+          python process_data.py
+
+      - name: Commit y Push de los cambios
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Auto-update Dashboard data & Gemini insight" || echo "No changes to commit"
+          git push

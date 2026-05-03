@@ -1,0 +1,2452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Vacantes | Inteligencia de Selección</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --accent: #ec4899;
+            --cobalt: #1e40af;
+            --emerald: #10b981;
+            --amber: #f59e0b;
+            --bg: #09090b;
+            --surface: rgba(15, 23, 42, 0.6);
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --sidebar-width: 280px;
+        }
+
+        body.light-theme {
+            --bg: #f8fafc;
+            --surface: rgba(255, 255, 255, 0.8);
+            --text: #0f172a;
+            --text-dim: #64748b;
+            --glass: rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(0, 0, 0, 0.1);
+        }
+
+        body.sidebar-minimized {
+            --sidebar-width: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease, margin-left 0.3s ease, padding 0.3s ease;
+        }
+
+        body {
+            background: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar */
+        aside {
+            width: var(--sidebar-width);
+            background: var(--surface);
+            backdrop-filter: blur(24px);
+            border-right: 1px solid var(--glass-border);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        body.sidebar-minimized aside {
+            padding: 2rem 0.5rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            white-space: nowrap;
+        }
+
+        aside.minimized .logo span:last-child {
+            display: none;
+        }
+
+        body.sidebar-minimized .logo span:last-child {
+            display: none;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav li {
+            margin-bottom: 1rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        aside.minimized .nav-link span {
+            display: none;
+        }
+
+        body.sidebar-minimized .nav-link span {
+            display: none;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--glass);
+            color: var(--text);
+        }
+
+        .nav-link.active {
+            border-left: 4px solid var(--primary);
+        }
+
+        /* Minimize Button */
+        .toggle-sidebar {
+            margin-top: auto;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            padding: 0.75rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        aside.minimized .toggle-sidebar span:last-child {
+            display: none;
+        }
+
+        body.sidebar-minimized .toggle-sidebar span:last-child {
+            display: none;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .ai-summary {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-summary::before {
+            content: '✨ Gemini 3.1 Insight';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            font-size: 0.75rem;
+            border-bottom-left-radius: 12px;
+        }
+
+        /* Grid Layouts */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            background-image: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .chart-container {
+            height: 250px;
+            position: relative;
+            margin-top: 1rem;
+        }
+
+        /* Progress Bars */
+        .progress-bg {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            height: 12px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+        }
+        
+        .progress-fill.active { background: var(--cobalt); }
+        .progress-fill.frozen { background: var(--amber); }
+
+        .kpi-large {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--emerald), #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 0.5rem;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        select, input {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-success { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-warning { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge-info { background: rgba(59, 130, 246, 0.2); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+        /* FPP Semaphor */
+        .fpp-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid transparent;
+        }
+
+        .fpp-card.red { border-left-color: var(--danger); }
+        .fpp-card.yellow { border-left-color: var(--warning); }
+        .fpp-card.green { border-left-color: var(--success); }
+
+        .fpp-info h4 { margin-bottom: 0.25rem; }
+        .fpp-date { font-size: 0.85rem; color: var(--text-dim); }
+
+        /* Multi-select Filter Styles */
+        .filter-group {
+            position: relative;
+            display: inline-block;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover { background: var(--glass); }
+
+        .filter-options {
+            position: absolute;
+            top: 110%;
+            left: 0;
+            background: #1e293b;
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem;
+            min-width: 250px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+        }
+
+        .filter-options.show { display: block; animation: fadeIn 0.2s ease; }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background 0.2s;
+        }
+
+        .filter-item:hover { background: rgba(255,255,255,0.05); }
+
+        .filter-item input {
+            cursor: pointer;
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Tabs Logic */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Tooltip Styles */
+        .tooltip {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .tooltip:hover::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            width: 280px;
+            font-size: 0.8rem;
+            z-index: 100;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            white-space: normal;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <aside id="sidebar">
+        <div class="logo">
+            <i data-lucide="layers" style="color: var(--primary)"></i> <span>VACANTES AI</span>
+        </div>
+        <nav>
+            <ul>
+                <li><div class="nav-link active" onclick="showTab('consolidado')"><i data-lucide="layout-dashboard" size="18"></i> <span>Consolidado</span></div></li>
+                <li><div class="nav-link" onclick="showTab('aprendices')"><i data-lucide="graduation-cap" size="18"></i> <span>Aprendices AI</span></div></li>
+                <li><div class="nav-link" onclick="showTab('detalles')"><i data-lucide="clipboard-list" size="18"></i> <span>Lista Vacantes</span></div></li>
+                <li><div class="nav-link" onclick="showTab('fpp')"><i data-lucide="bell-ring" size="18"></i> <span>Alertas FPP</span></div></li>
+            </ul>
+        </nav>
+
+        <button class="toggle-sidebar" onclick="toggleTheme()" style="margin-top: 2rem;">
+            <i id="theme-icon" data-lucide="moon" size="18"></i> <span id="theme-text">Modo Claro</span>
+        </button>
+
+        <button class="toggle-sidebar" onclick="toggleSidebar()">
+            <i id="sidebar-icon" data-lucide="chevron-left" size="18"></i> <span>Minimizar</span>
+        </button>
+    </aside>
+
+    <main>
+        <header>
+            <h1>Dashboard de Gestión</h1>
+            <div id="last-update" style="color: var(--text-dim); font-size: 0.8rem;">Actualizado: --/--/--</div>
+        </header>
+
+        <!-- Pestaña Consolidado (Alta Gerencia) -->
+        <div id="consolidado" class="tab-content active">
+            <section class="ai-summary" style="display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem;">
+                <div style="font-size: 2rem;">✨</div>
+                <div>
+                    <p id="ai-insight" style="line-height: 1.6;">Cargando sugerencias estratégicas de Gemini...</p>
+                </div>
+            </section>
+            
+            <div class="dashboard-grid" style="grid-template-columns: 1fr 2fr; margin-bottom: 1.5rem;">
+                <!-- KPI Eficiencia -->
+                <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="color: var(--text-dim); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;">Eficiencia de Selección</h3>
+                    <h1 class="kpi-large" id="kpi-eficiencia">0%</h1>
+                    <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 0.5rem;">Vacantes en etapa final</p>
+                </div>
+                
+                <!-- Capacidad Institucional -->
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem;">Capacidad Institucional vs. Bloqueo</h3>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="font-size: 0.9rem; color: var(--text-dim);">Capacidad Total Autorizada</span>
+                        <strong id="kpi-total">0</strong>
+                    </div>
+                    <div class="progress-bg" style="margin-bottom: 1rem;">
+                        <div id="bar-activas" class="progress-fill active" style="width: 0%;"></div>
+                        <div id="bar-congeladas" class="progress-fill frozen" style="width: 0%;"></div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 2rem;">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--cobalt);"></div>
+                                <span style="font-size: 0.85rem; color: var(--text-dim);">Operación Activa</span>
+                            </div>
+                            <strong id="kpi-volumen" style="font-size: 1.2rem;">0</strong>
+                        </div>
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--amber);"></div>
+                                <span style="font-size: 0.85rem; color: var(--text-dim);">Operación Detenida</span>
+                            </div>
+                            <strong id="kpi-congeladas-num" style="font-size: 1.2rem;">0</strong>
+                        </div>
+                        <div style="margin-left: auto; text-align: right;">
+                            <span style="font-size: 0.85rem; color: var(--amber);">Índice de Congelamiento</span>
+                            <br>
+                            <strong id="kpi-indice-cong" style="font-size: 1.2rem; color: var(--amber);">0%</strong>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- CIERRE DEL PRIMER DASHBOARD-GRID -->
+
+            <div class="dashboard-grid" style="grid-template-columns: repeat(3, 1fr);">
+                <!-- Embudo Crítico -->
+                <div class="card">
+                    <h3>Embudo Crítico</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Flujo de vacantes activas</p>
+                    <div class="chart-container">
+                        <canvas id="funnelChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Concentración por Procesos -->
+                <div class="card">
+                    <h3>Riesgo por Proceso</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Top áreas con mayor déficit</p>
+                    <div class="chart-container">
+                        <canvas id="procesosChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Tendencia de Cobertura -->
+                <div class="card">
+                    <h3>Tendencia de Volumen</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Crecimiento acumulado activo</p>
+                    <div class="chart-container">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Aprendices -->
+        <div id="aprendices" class="tab-content">
+            <h2 style="font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <i data-lucide="graduation-cap" style="color: var(--primary)"></i> Gestión Estratégica de Aprendices
+            </h2>
+            
+            <div class="ai-summary" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.1)); margin-bottom: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--amber)">Aviso de Acción Gerencial (Gemini 1.5 Pro)</h3>
+                <p id="apr-insight" style="color: var(--text-dim); line-height: 1.6;">Cargando pronóstico...</p>
+            </div>
+
+            <div class="dashboard-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <!-- Semáforo de Cumplimiento (Válidos) -->
+                <div class="card">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Cumplimiento Legal (Válidos)</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-dim);">Cuota Objetivo: 166 (Incluye 20 días de gracia)</p>
+                    <div class="chart-container" style="height: 180px;">
+                        <canvas id="aprendicesGauge"></canvas>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <span id="apr-status-badge" class="badge">--</span>
+                    </div>
+                </div>
+
+                <!-- Semáforo de Contratos Vigentes -->
+                <div class="card">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Estado de Planta (Vigentes)</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-dim);">Meta Operativa: 166 Contratos Activos</p>
+                    <div class="chart-container" style="height: 180px;">
+                        <canvas id="vigentesGauge"></canvas>
+                    </div>
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <span id="apr-vigentes-badge" class="badge">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid" style="margin-top: 1.5rem;">
+                <!-- Riesgo de Multa -->
+                <div class="card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Riesgo de Multa (SENA)</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-dim);">Cupos por expirar en < 5 días hábiles</p>
+                    <div id="apr-riesgo-multa" class="kpi-large" style="background: linear-gradient(to right, var(--danger), #f87171); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        0
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--danger); margin-top: 1rem;">
+                        <i data-lucide="alert-triangle" size="14"></i> Requiere contratación urgente
+                    </p>
+                </div>
+
+                <!-- Línea de Tiempo de Contratación -->
+                <div class="card">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Línea de Tiempo de Ingresos</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-dim);">Pronóstico AI para próximos viernes</p>
+                    <div id="apr-forecast-list" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                        <!-- Dinámico -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña Detalles -->
+        <div id="detalles" class="tab-content">
+            <div class="card">
+                <div class="filters" style="display: flex; gap: 1rem; align-items: center; margin-bottom: 2rem;">
+                    <input type="text" id="search" placeholder="🔍 Buscar cargo..." onkeyup="filterTable()" style="flex: 1; min-width: 200px;">
+                    
+                    <!-- Filtro Proceso -->
+                    <div class="filter-group">
+                        <button class="filter-btn" onclick="toggleFilter('opts-proceso')">📂 Proceso <span id="count-proceso" style="font-size: 0.7rem; opacity: 0.7;"></span></button>
+                        <div id="opts-proceso" class="filter-options"></div>
+                    </div>
+
+                    <!-- Filtro Psicóloga -->
+                    <div class="filter-group">
+                        <button class="filter-btn" onclick="toggleFilter('opts-psicologa')">👤 Psicóloga <span id="count-psicologa" style="font-size: 0.7rem; opacity: 0.7;"></span></button>
+                        <div id="opts-psicologa" class="filter-options"></div>
+                    </div>
+
+                    <!-- Filtro Estado -->
+                    <div class="filter-group">
+                        <button class="filter-btn" onclick="toggleFilter('opts-estado')">🔔 Estado <span id="count-estado" style="font-size: 0.7rem; opacity: 0.7;"></span></button>
+                        <div id="opts-estado" class="filter-options"></div>
+                    </div>
+
+                    <button onclick="resetFilters()" style="background: var(--danger); border: none; color: white; padding: 0.6rem 1.2rem; border-radius: 12px; cursor: pointer; opacity: 0.8;">Limpiar</button>
+                </div>
+                <div class="table-container">
+                    <table id="vacantesTable">
+                        <thead>
+                            <tr>
+                                <th>Proceso</th>
+                                <th>Cargo</th>
+                                <th style="text-align: center;">Planta</th>
+                                <th style="text-align: center;">Vac.</th>
+                                <th>Vinculación</th>
+                                <th>Estado</th>
+                                <th>Psicóloga</th>
+                                <th style="text-align: center;">Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Se llena dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pestaña FPP -->
+        <div id="fpp" class="tab-content">
+            <div class="filters">
+                <input type="text" id="search-fpp" placeholder="Buscar por nombre o cargo..." onkeyup="renderFPP()" style="width: 100%; max-width: 400px;">
+            </div>
+            <div class="dashboard-grid" id="fpp-list">
+                <!-- Se llena dinámicamente -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Datos que recibirá desde el script de Python (Injectados via Placeholder)
+        // {{DATA_JSON}}
+        let appData = {
+    "lastUpdate": "2026-05-03 02:03:44",
+    "aiInsight": "**Insight Ejecutivo:** Riesgo cr\u00edtico de estancamiento en vacantes especialistas por dependencia de validaciones externas (Dr. Solano/Fernanda) y alta carga operativa en enfermer\u00eda (27+ plazas). Urge desbloquear decisiones t\u00e9cnicas para asegurar la continuidad asistencial.",
+    "kpisGerenciales": {
+        "indiceCongelamiento": 33.8,
+        "volumenActivo": 145.0,
+        "capacidadTotal": 219.0,
+        "vacantesCongeladas": 74.0,
+        "eficienciaGeneral": 64.1,
+        "funnel": {
+            "labels": [
+                "Reclutamiento",
+                "Entrevista",
+                "Selecci\u00f3n"
+            ],
+            "data": [
+                42.0,
+                10.0,
+                93.0
+            ]
+        },
+        "distribucionProcesos": {
+            "names": [
+                "ENFERMERIA",
+                "LABORATORIO CLINICO",
+                "LOGISTICA Y SUMINIST..",
+                "MANTENIMIENTO",
+                "ONCOLOGIA"
+            ],
+            "counts": [
+                68.0,
+                10.0,
+                8.0,
+                8.0,
+                7.0
+            ]
+        },
+        "tendencia": [
+            14,
+            36,
+            58,
+            87,
+            123,
+            145
+        ]
+    },
+    "kpisAprendices": {
+        "vigentes": 159,
+        "validos": 179,
+        "meta": 166,
+        "riesgoMulta": 1,
+        "insight": "Mantener buffer preventivo de +13 cupos; contratar en mayo 15 y julio para mitigar vencimientos masivos y asegurar cumplimiento legal continuo.",
+        "forecast": [
+            {
+                "fecha": "2026-05-01",
+                "cantidad": 0
+            },
+            {
+                "fecha": "2026-05-08",
+                "cantidad": 0
+            },
+            {
+                "fecha": "2026-05-15",
+                "cantidad": 12
+            },
+            {
+                "fecha": "2026-06-05",
+                "cantidad": 2
+            },
+            {
+                "fecha": "2026-06-12",
+                "cantidad": 0
+            },
+            {
+                "fecha": "2026-06-19",
+                "cantidad": 0
+            },
+            {
+                "fecha": "2026-07-03",
+                "cantidad": 2
+            },
+            {
+                "fecha": "2026-07-10",
+                "cantidad": 10
+            },
+            {
+                "fecha": "2026-07-17",
+                "cantidad": 4
+            }
+        ]
+    },
+    "vacantes": [
+        {
+            "proceso": "ACTIVOS FIJOS",
+            "cargo": "AUXILIAR DE ACTIVOS FIJOS",
+            "estado": "Reclutamiento",
+            "psicologa": "Lady",
+            "obs": "RECLUTAMIENTO - PENDIENTE REUNI\u00d3N FERNANDA",
+            "tiempo": 1.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ATENCION AL USUARIO",
+            "cargo": "GESTOR DE EXPERIENCIA AL USUARIO",
+            "estado": "Entrevista",
+            "psicologa": "Lady",
+            "obs": "EN PROCESO - 1",
+            "tiempo": 1.0,
+            "planta": 44.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CARTERA",
+            "cargo": "ANALISTA DE CARTERA",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADO",
+            "tiempo": 1.0,
+            "planta": 3.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR DE ADMISIONES",
+            "estado": "Congelado",
+            "psicologa": "Lady",
+            "obs": "CONGELADO",
+            "tiempo": 2.0,
+            "planta": 27.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "EN PROCESO",
+            "tiempo": 1.0,
+            "planta": 42.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD -REFERENCIA",
+            "estado": "Congelado",
+            "psicologa": "Susana",
+            "obs": "RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 42.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "ELECTROFISIOLOGO (A)",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "INFECTOLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "PARA AUMENTO DE HORAS PROA",
+            "tiempo": 0.5,
+            "planta": 3.75,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "SONOGRAFISTA",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 3.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "NEUROLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "VINCULACION POR OPS IVAN PRADILLA",
+            "tiempo": 0.5,
+            "planta": 8.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "CARDIOLOGO FALLA CARDIACA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "MEDICO GENERAL -FALLA CARDIACA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "MEDICO GENERAL -HX",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 2.0,
+            "planta": 0.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "MEDICO GENERAL -HX",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "LA FECHA DE NO RENOVACION ES EN MAYO",
+            "tiempo": 1.0,
+            "planta": 0.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "INTERNISTA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 0.5,
+            "planta": 40.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "ANESTESIOLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA - CONTRATADOS POR SEDAR Y OPS",
+            "tiempo": 1.5,
+            "planta": 33.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "ANESTESIOLOGO CARDIOVASCULAR",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA - JEFE INMEDIATO",
+            "tiempo": 1.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "ANESTESIOLOGO SUPERNUMERARIO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA - CONTRATADOS POR SEDAR Y OPS",
+            "tiempo": 2.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "CIRUJANO DE CABEZA Y CUELLO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA SIN REQUERIMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "CIRUJANO DE TORAX",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA SIN REQUERIMIENTO",
+            "tiempo": 0.75,
+            "planta": 2.25,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "CIRUJANO GENERAL",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA VIA CORREO",
+            "tiempo": 0.5,
+            "planta": 20.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "NEUROCIRUJANO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN VERIFICACION CON JEFE INMEDIATO SI HAY ALGUN ESPECIALISTA QUE TOME LAS DOS HORAS PENDIENTES",
+            "tiempo": 0.25,
+            "planta": 10.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "CIRUJANO VASCULAR",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "VACACIONES A PARTIR DEL 13 DE ABRIL",
+            "tiempo": 1.0,
+            "planta": 4.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "CIRUJANO HEPATOBILIAR",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "OTORRINOLARINGOLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN VERIFICACION CON JEFE INMEDIATO SI HAY ALGUN ESPECIALISTA QUE TOME LAS DOS HORAS PENDIENTES",
+            "tiempo": 0.25,
+            "planta": 3.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS QUIRURGICAS",
+            "cargo": "OTORRINOLARINGOLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "|",
+            "tiempo": 0.5,
+            "planta": 3.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CUIDADO CRITICO",
+            "cargo": "MEDICO GENERAL",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADO SIN REQUERIMIENTO",
+            "tiempo": 4.0,
+            "planta": 12.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
+            "cargo": "GESTOR CLINICO-ORTOPEDIA Y PARED ABDOMINAL",
+            "estado": "En revisi\u00f3n",
+            "psicologa": "Carolina",
+            "obs": "EN REVISI\u00d3N POR DR. ALLAN SOLANO\nDra. Toloza, de acuerdo a reuni\u00f3n",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
+            "cargo": "GESTOR DE EXPERIENCIA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA",
+            "tiempo": 3.0,
+            "planta": 27.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
+            "cargo": "AUXILIAR DE ENFERMERIA SERVICIOS PARTICULARES",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "ENTREVISTAS",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
+            "cargo": "GESTOR CLINICO- INSTITUTO DE LA MUJER",
+            "estado": "Convocatoria Interna",
+            "psicologa": "Carolina",
+            "obs": "CONVOCATORIA INTERNA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "EDUCACION MEDICA",
+            "cargo": "PROFESIONAL  DE EDUCACION",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 20",
+            "tiempo": 36.0,
+            "planta": 1048.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO 1",
+            "tiempo": 2.0,
+            "planta": 1048.5,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 6",
+            "tiempo": 24.0,
+            "planta": 446.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO 1",
+            "tiempo": 1.0,
+            "planta": 446.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO  FALLA CARDIACA",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "CARGO NUEVO",
+            "tiempo": 1.0,
+            "planta": 446.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "COORDINADOR DE ENFERMERIA",
+            "estado": "Entrevista",
+            "psicologa": "Susana",
+            "obs": "PENDIENTE ENTREVISTA JEFE INMEDIATO",
+            "tiempo": 3.0,
+            "planta": 17.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "COORDINADOR DE ENFERMERIA-HUBU",
+            "estado": "Entrevista",
+            "psicologa": "Susana",
+            "obs": "PENDIENTE ENTREVISTA JEFE INMEDIATO",
+            "tiempo": 1.0,
+            "planta": 17.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ESTERILIZACION",
+            "cargo": "AUXILIAR DE ESTERILIZACION",
+            "estado": "Seleccionado",
+            "psicologa": "Carolina",
+            "obs": "Finalizado",
+            "tiempo": 0.0,
+            "planta": 26.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ESTERILIZACION",
+            "cargo": "INSTRUMENTADOR QUIRURGICO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO 1 - 1\u00b0 JUNIO - ALEJANDRA BELE\u00d1O",
+            "tiempo": 1.0,
+            "planta": 61.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "ESTERILIZACION",
+            "cargo": "INSTRUMENTADOR QUIRURGICO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - 1",
+            "tiempo": 2.0,
+            "planta": 61.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FACTURACION",
+            "cargo": "FACTURADOR",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "EN PROCESO - 5",
+            "tiempo": 5.0,
+            "planta": 76.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FACTURACION",
+            "cargo": "PROFESIONAL DE INFORMACION",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FACTURACION",
+            "cargo": "PROFESIONAL DE INFORMACION",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FINANCIERA",
+            "cargo": "PROFESIONAL FINANCIERO JUNIOR",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - PASO DIRECTO: JOHAN STEVEN BARRAGAN ZORRO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "GESTION CONTABLE",
+            "cargo": "AUXILIAR DE CONTABILIDAD",
+            "estado": "Entrevista",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO 3",
+            "tiempo": 1.0,
+            "planta": 3.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "GESTION DE LA CALIDAD",
+            "cargo": "PROFESIONAL DE CALIDAD I",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "CONVOCATORIA INTERNA  - PENDIENTE RESPUESTA JEFE",
+            "tiempo": 1.0,
+            "planta": 8.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "GESTION DOCUMENTAL",
+            "cargo": "AUXILIAR GESTION DOCUMENTAL",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 4.0,
+            "planta": 20.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "IMAGENES DIAGNOSTICAS",
+            "cargo": "AUXILIAR ADMIN IM\u00c1GENES DIAGN\u00d3STICAS",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 7.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "IMAGENES DIAGNOSTICAS",
+            "cargo": "TECNOLOGO RADIOLOGIA CONVENCIONAL SPN",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 0.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "IMAGENES DIAGNOSTICAS",
+            "cargo": "TECNOLOGO TOMOGRAFIA",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "SE ENVIAN - PROMOCI\u00d3N - DANA",
+            "tiempo": 1.0,
+            "planta": 14.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "JURIDICA",
+            "cargo": "AUXILIAR ADMINISTRATIVO (A)",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
+            "estado": "Reclutamiento",
+            "psicologa": "Yulieth",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "LIDER ANALITICO",
+            "estado": "Seleccionado",
+            "psicologa": "Carolina",
+            "obs": "CONVOCATORIA INTERNA EXTERNA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "AUXILIAR DE LABORATORIO JUNIOR",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - 2 -  CLARA GINETH APARICIO MANRIQUE - INILDA MONTOYA",
+            "tiempo": 4.0,
+            "planta": 33.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "BACTERIOLOGO",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO 4",
+            "tiempo": 2.0,
+            "planta": 22.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "BACTERIOLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EL VENCIMIENTO DE CONTRATO ES A PARTIR DEL 10 DE MAYO",
+            "tiempo": 1.0,
+            "planta": 0.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "BACTERIOLOGO SUPERNUMERARIO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO- 1 - ANYS LINEY ARTEAGA ARTEAGA",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "BACTERIOLOGO (A) ESPECIAL",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "LM FPP EL 24 DE ABRIL DE 2026",
+            "tiempo": 1.0,
+            "planta": 7.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "BACTERIOLOGO (A) ESPECIAL",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "2026-04-14 00:00:00",
+            "tiempo": 1.0,
+            "planta": 7.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LOGISTICA Y SUMINISTROS",
+            "cargo": "AUXILIAR ADMINISTRATIVO",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 3.0,
+            "planta": 13.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LOGISTICA Y SUMINISTROS",
+            "cargo": "AUXILIAR FARMACIA LOGISTICO",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO 2",
+            "tiempo": 2.0,
+            "planta": 7.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LOGISTICA Y SUMINISTROS",
+            "cargo": "AUXILIAR FARMACIA LOGISTICO",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 3.0,
+            "planta": 7.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "COORDINADOR DE MANTENIMIENTO-BIOMEDICO",
+            "estado": "Congelado",
+            "psicologa": "Yulieth",
+            "obs": "EN REVISION PARA CAMBIO DE PERFIL",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "AUXILIAR DE MANTENIMIENTO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO 3 CANDIDATOS",
+            "tiempo": 3.0,
+            "planta": 16.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "TECNICO DE MANTENIMIENTO",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 2.0,
+            "planta": 14.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "TECNICO DE MANTENIMIENTO -GASES MEDICINALES",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN REVISI\u00d2N",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "INGENIERO BIOMEDICO JUNIOR",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - DINA LUZ SANDOVAL BUITRAGO",
+            "tiempo": 2.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "TECNOLOGO  BIOMEDICO",
+            "estado": "Entrevista",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 3 -",
+            "tiempo": 1.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "TECNICO DE MANTENIMIENTO -REFRIGERACION Y AIRE ACONDICIONADO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "JOSE VICENTE CARDENAS - PENDIENTE  EXAMEN MEDICO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ONCOLOGIA",
+            "cargo": "ENFERMERO NAVEGACION",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 2.0,
+            "planta": 6.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ONCOLOGIA",
+            "cargo": "AUXILIARES DE NAVEGACION",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "nan",
+            "tiempo": 5.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PATOLOGIA",
+            "cargo": "ESPECIALISTA EN GENETICA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PATOLOGIA",
+            "cargo": "COORDINADOR DE PATOLOGIA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "NOMBRAMIENTO DR. FRANKY ROCHA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PATOLOGIA",
+            "cargo": "AUXILIAR DE PATOLOGIA",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO 1 CANDIDATO",
+            "tiempo": 0.0,
+            "planta": 6.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "PATOLOGIA",
+            "cargo": "AUXILIAR DE PATOLOGIA-HUBU",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO 1 CANDIDATO",
+            "tiempo": 2.0,
+            "planta": 6.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PLANEACION",
+            "cargo": "PROFESIONAL DE PLANEACION JUNIOR",
+            "estado": "Entrevista",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PLANTA  FISICA",
+            "cargo": "PROFESIONAL JUNIOR PLANTA F\u00cdSICA",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROGRAMAS ESPECIALES",
+            "cargo": "M\u00c8DICO FAMILIARISTA PROGRAMAS ESPECIALES",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA - SIN REQUERIMIENTO",
+            "tiempo": 0.5,
+            "planta": 0.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROGRAMAS ESPECIALES",
+            "cargo": "MEDICO GENERAL B24",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA",
+            "tiempo": 0.5,
+            "planta": 21.25,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROGRAMAS ESPECIALES",
+            "cargo": "MEDICO GENERAL- DOLOR",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "LA VACANTE ES PARA EL 1 DE MARZO",
+            "tiempo": 1.0,
+            "planta": 21.25,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "AUXILIAR ADMINISTRATIVO TMO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "AUXILIARES DE ENFERMERIA TMO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO - CONTRATADOS 3 EN OTRAS \u00c1REAS (2 HX / 1 UCI)",
+            "tiempo": 2.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "BACTERIOLOGO CITOGENETISTA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - 2 -  Cosinte OK - PTE AVAL PARA CONTINUAR ESTUDIO MEDICO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "BACTERIOLOGO PROCESAMIENTO CELULAS HEMATOPOYETICAS",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "Ana Mar\u00eda Cortes Pte legalizar por acta",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "ENFERMERO  TMO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - 1 - EN EXAMEN MEDICO",
+            "tiempo": 8.0,
+            "planta": 8.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "ESPECIALISTA EN HEMATOLOGIA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN REVISION DOCUMENTOS",
+            "tiempo": 5.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "LIDER TMO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "MEDICO ESPECIALISTA EN GENETICA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "Se incia proceso a finales de diciembre pte espacio por la Dra Josellyn vs. Equipos",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROYECTO TMO",
+            "cargo": "MEDICO GENERAL TMO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "SE ENCUENTRAN 4 MD EN EL \u00c1REA",
+            "tiempo": 4.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "REHABILITACION",
+            "cargo": "FISIOTERAPEUTA",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 2.0,
+            "planta": 110.75,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SALUD REPRODUCTIVA Y SEXUAL",
+            "cargo": "GINECOLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "SE CUBRE CON AUMENTO DE HORAS *ORDEN DR. GOMEZ",
+            "tiempo": 1.25,
+            "planta": 20.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SALUD REPRODUCTIVA Y SEXUAL",
+            "cargo": "UROLOGO",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA - PENDIENTE DEFINIR OPS",
+            "tiempo": 1.5,
+            "planta": 5.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SERVICIO FARMACEUTICO",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 31.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "SERVICIO FARMACEUTICO",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO 4",
+            "tiempo": 4.0,
+            "planta": 31.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SERVICIO FARMACEUTICO",
+            "cargo": "REGENTE DE FARMACIA",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 14.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SERVICIO FARMACEUTICO",
+            "cargo": "COORDINADOR DE FARMACIA",
+            "estado": "Congelado",
+            "psicologa": "Susana",
+            "obs": "nan",
+            "tiempo": 2.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "SOPORTE TECNICO SERVINTE",
+            "estado": "Reclutamiento",
+            "psicologa": "Lady",
+            "obs": "CONVOCATORIA INTERNA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PROGRAMAS ESPECIALES",
+            "cargo": "AUXILIAR ADMINISTRATIVO CLINICA DEL DOLOR",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "SELECCIONADO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "COORDINADOR INTEROPERABILIDAD",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "OFICIAL DE SEGURIDAD DE LA INFORMACION",
+            "estado": "Entrevista",
+            "psicologa": "Carolina",
+            "obs": "PTE CONCEPTO ENTREVISTA DE JEFE INMEDIATO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL DE TICS II",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADO SIN REQUERIMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL DE SISTEMAS JUNIOR",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL  INNOVACION Y SALUD DIGITAL",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "JEFE DE TECNOLOG\u00cdAS DE LA INFO Y COM",
+            "estado": "Reclutamiento",
+            "psicologa": "Yulieth",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "URGENCIAS",
+            "cargo": "EMERGENCIOLOGO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO",
+            "tiempo": 1.0,
+            "planta": 9.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "URGENCIAS",
+            "cargo": "MEDICO GENERAL",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO 3 CANDIDATOS",
+            "tiempo": 2.0,
+            "planta": 91.0,
+            "vinculacion": "FIJO"
+        }
+    ],
+    "fpp": [
+        {
+            "nombre": "VIANETH DAYANNA RANGEL ALBINO",
+            "cargo": "BACTERI\u00d3LOGO (A) ESPECIAL",
+            "proceso": "Laboratorio Cl\u00ednico y Servicio Transfusional",
+            "fpp": "2026-04-25"
+        },
+        {
+            "nombre": "BIBIANA YAMIL MURILLO MARTINEZ",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-04-29"
+        },
+        {
+            "nombre": "CLAUDIA NATALI AHUMADA BALLESTEROS",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-05-03"
+        },
+        {
+            "nombre": "ANA MARIA OJEDA GONZALEZ",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-04-03"
+        },
+        {
+            "nombre": "JANNETH BELEN MARTINEZ BOLIVAR",
+            "cargo": "GESTOR DE EXPERIENCIA",
+            "proceso": "Direccionamiento Estrat\u00e9gico",
+            "fpp": "2026-04-20"
+        },
+        {
+            "nombre": "DIANA COSTANZA ESGUERRA CACERES",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-03-23"
+        },
+        {
+            "nombre": "DIANA PAOLA ZAMBRANO GONZALEZ",
+            "cargo": "ANFITRI\u00d3N DE SERVICIO",
+            "proceso": "Atenci\u00f3n al Usuario",
+            "fpp": "2026-04-04"
+        },
+        {
+            "nombre": "ANGIE LIZETH GARCIA PERDOMO",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-04-28"
+        },
+        {
+            "nombre": "SARA MELISSA FLOREZ HERNANDEZ",
+            "cargo": "MEDICO PROA",
+            "proceso": "Infecciones y Vigilancia Epidemiol\u00f3gica",
+            "fpp": "2026-05-06"
+        },
+        {
+            "nombre": "EDITH LORENA TORRES CORDOBA",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-05-05"
+        },
+        {
+            "nombre": "DARGY ROXANNA BAUTISTA SALCEDO",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-05-01"
+        },
+        {
+            "nombre": "LUZ ANGELA MAZUERA DORADO",
+            "cargo": "MEDICO PATOLOGO",
+            "proceso": "Patolog\u00eda",
+            "fpp": "2026-05-11"
+        },
+        {
+            "nombre": "KERLY JOJANA TRIANA ROBAYO",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-04-25"
+        },
+        {
+            "nombre": "BLANCA YAZMIN RUBIO CASTILLO",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "proceso": "Servicio Farmac\u00e9utico",
+            "fpp": "2026-06-25"
+        },
+        {
+            "nombre": "ALEJANDRA DEL PILAR BELE\u00d1O SURMAY",
+            "cargo": "INSTRUMENTADOR QUIRURGICO",
+            "proceso": "Esterilizaci\u00f3n",
+            "fpp": "2026-06-20"
+        },
+        {
+            "nombre": "VALENTINA NARANJO TRUJILLO",
+            "cargo": "INSTRUMENTADOR QUIRURGICO",
+            "proceso": "Esterilizaci\u00f3n",
+            "fpp": "2026-05-05"
+        },
+        {
+            "nombre": "LAURA VALENTINA LOPEZ SARMIENTO",
+            "cargo": "QUIMICO FARMACEUTICO JUNIOR",
+            "proceso": "Servicio Farmac\u00e9utico",
+            "fpp": "2026-08-09"
+        }
+    ],
+    "stats": {
+        "estados": {
+            "names": [
+                "Reclutamiento",
+                "Entrevista",
+                "En proceso",
+                "En revisi\u00f3n",
+                "Convocatoria Interna",
+                "Seleccionado"
+            ],
+            "counts": [
+                41.0,
+                9.0,
+                92.0,
+                1.0,
+                1.0,
+                1.0
+            ]
+        }
+    }
+};
+
+        function initDashboard() {
+            document.getElementById('last-update').innerText = `Actualizado: ${appData.lastUpdate}`;
+            document.getElementById('ai-insight').innerText = appData.aiInsight;
+            
+            if (appData.kpisGerenciales) {
+                const kpi = appData.kpisGerenciales;
+                document.getElementById('kpi-eficiencia').innerText = `${kpi.eficienciaGeneral}%`;
+                document.getElementById('kpi-total').innerText = kpi.capacidadTotal;
+                document.getElementById('kpi-volumen').innerText = kpi.volumenActivo;
+                document.getElementById('kpi-congeladas-num').innerText = kpi.vacantesCongeladas;
+                document.getElementById('kpi-indice-cong').innerText = `${kpi.indiceCongelamiento}%`;
+                
+                // Barras de progreso
+                const pActivas = (kpi.volumenActivo / kpi.capacidadTotal) * 100;
+                const pCongeladas = (kpi.vacantesCongeladas / kpi.capacidadTotal) * 100;
+                
+                document.getElementById('bar-activas').style.width = `${pActivas}%`;
+                document.getElementById('bar-congeladas').style.width = `${pCongeladas}%`;
+            }
+            
+            Chart.register(ChartDataLabels);
+            
+            populateFilters();
+            renderTable();
+            renderFPP();
+            renderCharts();
+        }
+
+        function populateFilters() {
+            const procesos = [...new Set(appData.vacantes.map(v => v.proceso))].sort();
+            const psicologas = [...new Set(appData.vacantes.map(v => v.psicologa))].sort();
+            const estados = [...new Set(appData.vacantes.map(v => v.estado))].sort();
+            
+            createCheckboxFilter('opts-proceso', procesos, 'proceso');
+            createCheckboxFilter('opts-psicologa', psicologas, 'psicologa');
+            createCheckboxFilter('opts-estado', estados, 'estado');
+        }
+
+        function createCheckboxFilter(containerId, options, category) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = `
+                <label class="filter-item" style="border-bottom: 1px solid var(--glass-border); margin-bottom: 0.5rem;">
+                    <input type="checkbox" onchange="toggleAll('${category}', this.checked)"> <strong>Seleccionar Todos</strong>
+                </label>
+            `;
+            options.forEach(opt => {
+                const label = document.createElement('label');
+                label.className = 'filter-item';
+                label.innerHTML = `
+                    <input type="checkbox" class="chk-${category}" value="${opt}" checked onchange="filterTable()">
+                    <span>${opt}</span>
+                `;
+                container.appendChild(label);
+            });
+            updateFilterCounts();
+        }
+
+        function toggleAll(category, checked) {
+            document.querySelectorAll(`.chk-${category}`).forEach(chk => chk.checked = checked);
+            filterTable();
+        }
+
+        function toggleFilter(id) {
+            const el = document.getElementById(id);
+            const isShow = el.classList.contains('show');
+            document.querySelectorAll('.filter-options').forEach(opt => opt.classList.remove('show'));
+            if (!isShow) el.classList.add('show');
+        }
+
+        // Cerrar filtros al hacer click fuera
+        window.onclick = function(event) {
+            if (!event.target.closest('.filter-group')) {
+                document.querySelectorAll('.filter-options').forEach(opt => opt.classList.remove('show'));
+            }
+        }
+
+        function renderTable() {
+            const tbody = document.querySelector('#vacantesTable tbody');
+            if (!tbody) return;
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            
+            const selProcesos = Array.from(document.querySelectorAll('.chk-proceso:checked')).map(c => c.value);
+            const selPsicologas = Array.from(document.querySelectorAll('.chk-psicologa:checked')).map(c => c.value);
+            const selEstados = Array.from(document.querySelectorAll('.chk-estado:checked')).map(c => c.value);
+
+            tbody.innerHTML = '';
+            updateFilterCounts();
+
+            appData.vacantes.forEach(v => {
+                if (
+                    (v.cargo.toLowerCase().includes(searchTerm) || v.proceso.toLowerCase().includes(searchTerm)) &&
+                    (selProcesos.includes(v.proceso)) &&
+                    (selPsicologas.includes(v.psicologa)) &&
+                    (selEstados.includes(v.estado))
+                ) {
+                    let badgeClass = 'badge-warning';
+                    const est = v.estado.toLowerCase();
+                    if (est.includes('seleccionado') || est.includes('finalizado') || est.includes('cerrada')) badgeClass = 'badge-success';
+                    if (est.includes('congelado')) badgeClass = 'badge-danger';
+                    if (est.includes('entrevista') || est.includes('proceso')) badgeClass = 'badge-info';
+
+                    const row = `
+                        <tr>
+                            <td style="font-size: 0.85rem;">${v.proceso}</td>
+                            <td style="font-weight: 600;">${v.cargo}</td>
+                            <td style="text-align: center; color: var(--text-dim);">${v.planta || 0}</td>
+                            <td style="text-align: center; font-weight: 600; color: var(--primary);">${v.tiempo}</td>
+                            <td style="font-size: 0.8rem; color: var(--text-dim);">${v.vinculacion || 'N/A'}</td>
+                            <td><span class="badge ${badgeClass}">${v.estado}</span></td>
+                            <td>${v.psicologa}</td>
+                            <td style="text-align: center;">
+                                ${v.obs && v.obs !== 'N/A' ? 
+                                    `<span class="tooltip" data-tip="${v.obs.replace(/"/g, '&quot;')}" style="color: var(--primary); font-size: 1.2rem;">📝</span>` : 
+                                    '<span style="color: var(--text-dim); opacity: 0.3;">-</span>'}
+                            </td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                }
+            });
+        }
+
+        function renderFPP() {
+            const container = document.getElementById('fpp-list');
+            if (!container) return;
+            const searchTerm = document.getElementById('search-fpp').value.toLowerCase();
+            container.innerHTML = '';
+
+            const fppSorted = appData.fpp.map(f => {
+                const fppDate = new Date(f.fpp);
+                const today = new Date();
+                const diffTime = fppDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return { ...f, diffDays };
+            }).sort((a, b) => a.diffDays - b.diffDays);
+
+            fppSorted.forEach(f => {
+                if (f.nombre.toLowerCase().includes(searchTerm) || f.cargo.toLowerCase().includes(searchTerm)) {
+                    let semaphor = 'green';
+                    if (f.diffDays < 15) semaphor = 'red';
+                    else if (f.diffDays <= 30) semaphor = 'yellow';
+
+                    const card = `
+                        <div class="card fpp-card ${semaphor}">
+                            <div class="fpp-info">
+                                <h4 style="color: var(--text)">${f.nombre}</h4>
+                                <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.5rem;">${f.cargo} • ${f.proceso}</p>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span class="fpp-date">Vence: ${f.fpp}</span>
+                                    <span class="badge ${semaphor === 'red' ? 'badge-danger' : semaphor === 'yellow' ? 'badge-warning' : 'badge-success'}">
+                                        ${f.diffDays} días
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += card;
+                }
+            });
+        }
+
+        function filterTable() {
+            renderTable();
+        }
+
+        function updateFilterCounts() {
+            const cats = ['proceso', 'psicologa', 'estado'];
+            cats.forEach(cat => {
+                const total = document.querySelectorAll(`.chk-${cat}`).length;
+                const checked = document.querySelectorAll(`.chk-${cat}:checked`).length;
+                const el = document.getElementById(`count-${cat}`);
+                if (el) el.innerText = `(${checked}/${total})`;
+            });
+        }
+
+        function resetFilters() {
+            document.getElementById('search').value = '';
+            document.querySelectorAll('.filter-options input[type="checkbox"]').forEach(chk => chk.checked = true);
+            renderTable();
+        }
+
+        let charts = {};
+
+        function renderCharts() {
+            if (charts.funnel) charts.funnel.destroy();
+            if (charts.procesos) charts.procesos.destroy();
+            if (charts.trend) charts.trend.destroy();
+
+            const kpi = appData.kpisGerenciales;
+            if (!kpi) return;
+
+            // Detectar colores actuales del tema
+            const isLight = document.body.classList.contains('light-theme');
+            const textDimColor = isLight ? '#64748b' : '#94a3b8';
+
+            // 1. Embudo Crítico
+            const funnelCtx = document.getElementById('funnelChart').getContext('2d');
+            charts.funnel = new Chart(funnelCtx, {
+                type: 'bar',
+                data: {
+                    labels: kpi.funnel.labels,
+                    datasets: [{
+                        data: kpi.funnel.data,
+                        backgroundColor: ['#1e40af', '#6366f1', '#10b981'],
+                        borderRadius: 8,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        datalabels: { 
+                            display: true,
+                            color: '#fff', 
+                            font: { weight: 'bold', size: 12 },
+                            anchor: 'end',
+                            align: 'right',
+                            offset: 5
+                        }
+                    },
+                    scales: {
+                        x: { display: false, border: {display: false} },
+                        y: { grid: { display: false }, ticks: { color: textDimColor } }
+                    }
+                }
+            });
+
+            // 2. Concentración por Procesos (Donut)
+            const procCtx = document.getElementById('procesosChart').getContext('2d');
+            charts.procesos = new Chart(procCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: kpi.distribucionProcesos.names,
+                    datasets: [{
+                        data: kpi.distribucionProcesos.counts,
+                        backgroundColor: ['#1e40af', '#3b82f6', '#60a5fa', '#f59e0b', '#fbbf24'],
+                        borderWidth: 0,
+                        cutout: '70%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { 
+                            position: 'right', 
+                            labels: { 
+                                color: textDimColor, 
+                                boxWidth: 10, 
+                                padding: 15,
+                                generateLabels: (chart) => {
+                                    const data = chart.data;
+                                    return data.labels.map((label, i) => ({
+                                        text: `${label}: ${data.datasets[0].data[i]}`,
+                                        fillStyle: data.datasets[0].backgroundColor[i],
+                                        strokeStyle: data.datasets[0].backgroundColor[i],
+                                        lineWidth: 0,
+                                        fontColor: textDimColor,
+                                        index: i
+                                    }));
+                                }
+                            } 
+                        },
+                        datalabels: { 
+                            display: true,
+                            color: '#fff',
+                            font: { weight: 'bold', size: 11 },
+                            formatter: (value) => value
+                        }
+                    }
+                }
+            });
+
+            // 3. Tendencia de Cobertura
+            const trendCtx = document.getElementById('trendChart').getContext('2d');
+            charts.trend = new Chart(trendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['M1', 'M2', 'M3', 'M4', 'M5', 'Actual'],
+                    datasets: [{
+                        label: 'Volumen',
+                        data: kpi.tendencia,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#10b981'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { 
+                        legend: { display: false },
+                        datalabels: { 
+                            display: true,
+                            align: 'top',
+                            color: isLight ? '#10b981' : '#34d399',
+                            font: { weight: '600' },
+                            offset: 8
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: textDimColor } },
+                        y: { display: false }
+                    }
+                }
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            body.classList.toggle('light-theme');
+            
+            if (body.classList.contains('light-theme')) {
+                themeIcon.setAttribute('data-lucide', 'sun');
+                themeText.innerText = 'Modo Oscuro';
+            } else {
+                themeIcon.setAttribute('data-lucide', 'moon');
+                themeText.innerText = 'Modo Claro';
+            }
+            lucide.createIcons();
+            renderCharts();
+        }
+
+        function toggleSidebar() {
+            document.body.classList.toggle('sidebar-minimized');
+            const icon = document.getElementById('sidebar-icon');
+            if (document.body.classList.contains('sidebar-minimized')) {
+                icon.setAttribute('data-lucide', 'chevron-right');
+            } else {
+                icon.setAttribute('data-lucide', 'chevron-left');
+            }
+            lucide.createIcons();
+            setTimeout(renderCharts, 300);
+        }
+
+        function createGauge(ctx, value, meta, color) {
+            return new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Cumplido', 'Faltante'],
+                    datasets: [{
+                        data: [value, Math.max(0, meta - value)],
+                        backgroundColor: [color, 'rgba(255,255,255,0.05)'],
+                        borderWidth: 0,
+                        circumference: 180,
+                        rotation: 270,
+                        cutout: '80%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        datalabels: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+        }
+
+        function showTab(tabId) {
+            // Ocultar todos los contenidos y desactivar todos los links
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.display = 'none';
+            });
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            // Mostrar el contenido seleccionado
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.add('active');
+                activeTab.style.display = 'block';
+            }
+
+            // Activar el link correspondiente en el sidebar
+            const labels = { 'consolidado': 'Consolidado', 'aprendices': 'Aprendices AI', 'detalles': 'Lista Vacantes', 'fpp': 'Alertas FPP' };
+            const links = Array.from(document.querySelectorAll('.nav-link'));
+            const targetLink = links.find(l => l.innerText.includes(labels[tabId]));
+            if (targetLink) targetLink.classList.add('active');
+
+            // Refrescar gráficos específicos según la pestaña
+            if (tabId === 'consolidado') {
+                setTimeout(renderCharts, 100);
+            } else if (tabId === 'aprendices') {
+                setTimeout(() => {
+                    initDashboard(); // Esto redibuja el gauge de aprendices
+                }, 100);
+            }
+        }
+
+        function filterTable() {
+            renderTable();
+        }
+
+        function updateFilterCounts() {
+            const cats = ['proceso', 'psicologa', 'estado'];
+            cats.forEach(cat => {
+                const total = document.querySelectorAll(`.chk-${cat}`).length;
+                const checked = document.querySelectorAll(`.chk-${cat}:checked`).length;
+                document.getElementById(`count-${cat}`).innerText = `(${checked}/${total})`;
+            });
+        }
+
+        function resetFilters() {
+            document.getElementById('search').value = '';
+            document.querySelectorAll('.filter-options input[type="checkbox"]').forEach(chk => chk.checked = true);
+            renderTable();
+        }
+
+        function initDashboard() {
+            if (typeof appData === 'undefined') return;
+            document.getElementById('last-update').innerText = `Actualizado: ${appData.lastUpdate}`;
+            document.getElementById('ai-insight').innerText = appData.aiInsight;
+            
+            if (appData.kpisGerenciales) {
+                const kpi = appData.kpisGerenciales;
+                document.getElementById('kpi-eficiencia').innerText = `${kpi.eficienciaGeneral}%`;
+                document.getElementById('kpi-total').innerText = kpi.capacidadTotal;
+                document.getElementById('kpi-volumen').innerText = kpi.volumenActivo;
+                document.getElementById('kpi-congeladas-num').innerText = kpi.vacantesCongeladas;
+                document.getElementById('kpi-indice-cong').innerText = `${kpi.indiceCongelamiento}%`;
+                
+                const pActivas = (kpi.volumenActivo / kpi.capacidadTotal) * 100;
+                const pCongeladas = (kpi.vacantesCongeladas / kpi.capacidadTotal) * 100;
+                
+                document.getElementById('bar-activas').style.width = `${pActivas}%`;
+                document.getElementById('bar-congeladas').style.width = `${pCongeladas}%`;
+            }
+            
+            // Inyectar Módulo de Aprendices si existe
+            if (appData.kpisAprendices) {
+                const apr = appData.kpisAprendices;
+                
+                document.getElementById('apr-insight').innerText = apr.insight || 'Sin insights disponibles';
+                document.getElementById('apr-riesgo-multa').innerText = apr.riesgoMulta || 0;
+                
+                // Configurar Semáforo de Válidos
+                const colorSemaforo = apr.validos >= 168 ? '#10b981' : (apr.validos >= 166 ? '#f59e0b' : '#ef4444');
+                const badge = document.getElementById('apr-status-badge');
+                badge.innerText = `${apr.validos} Válidos`;
+                badge.className = `badge ${apr.validos >= 168 ? 'badge-success' : (apr.validos >= 166 ? 'badge-warning' : 'badge-danger')}`;
+                
+                const gaugeCtx = document.getElementById('aprendicesGauge').getContext('2d');
+                if (charts.aprendices) charts.aprendices.destroy();
+                charts.aprendices = createGauge(gaugeCtx, apr.validos, apr.meta, colorSemaforo);
+
+                // Configurar Semáforo de Vigentes
+                const colorVigentes = apr.vigentes >= 166 ? '#10b981' : (apr.vigentes >= 160 ? '#f59e0b' : '#ef4444');
+                const badgeVig = document.getElementById('apr-vigentes-badge');
+                badgeVig.innerText = `${apr.vigentes} Vigentes`;
+                badgeVig.className = `badge ${apr.vigentes >= 166 ? 'badge-success' : (apr.vigentes >= 160 ? 'badge-warning' : 'badge-danger')}`;
+                
+                const vigCtx = document.getElementById('vigentesGauge').getContext('2d');
+                if (charts.vigentes) charts.vigentes.destroy();
+                charts.vigentes = createGauge(vigCtx, apr.vigentes, 166, colorVigentes);
+
+                // Renderizar Forecast
+                const forecastList = document.getElementById('apr-forecast-list');
+                forecastList.innerHTML = '';
+                if (apr.forecast && apr.forecast.length > 0) {
+                    apr.forecast.forEach(item => {
+                        forecastList.innerHTML += `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem; border-bottom: 1px solid var(--glass-border);">
+                                <span style="color: var(--text-dim); font-size: 0.9rem;"><i data-lucide="calendar" size="14" style="margin-right: 4px;"></i> ${item.fecha}</span>
+                                <span style="font-weight: 600; color: var(--primary); background: rgba(99,102,241,0.1); padding: 0.2rem 0.6rem; border-radius: 8px;">+${item.cantidad} Aprendices</span>
+                            </div>
+                        `;
+                    });
+                } else {
+                    forecastList.innerHTML = '<p style="color: var(--text-dim); font-size: 0.85rem; text-align: center;">No hay ingresos programados.</p>';
+                }
+            }
+            
+            if (window.ChartDataLabels) Chart.register(ChartDataLabels);
+            
+            populateFilters();
+            renderTable();
+            renderFPP();
+            renderCharts();
+            if (window.lucide) lucide.createIcons();
+        }
+
+        window.onload = initDashboard;
+    </script>
+</body>
+</html>
