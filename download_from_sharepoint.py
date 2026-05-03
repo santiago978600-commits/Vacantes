@@ -17,7 +17,7 @@ def download_file():
         return False
 
     authority = f"https://login.microsoftonline.com/{TENANT_ID}"
-    app = msal.ConfidentialClientApplication(CLIENT_ID, authority=authority, client_credential=CLIENT_SECRET)
+    app = msal.PublicClientApplication(CLIENT_ID, authority=authority)
 
     print("Obteniendo token de acceso...")
     result = app.acquire_token_by_refresh_token(REFRESH_TOKEN, scopes=["https://graph.microsoft.com/.default"])
