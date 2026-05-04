@@ -6,7 +6,7 @@ import re
 
 EXCEL_PATH = os.environ.get("EXCEL_PATH", "Informe vacantes Auto.xlsx")
 HTML_PATH = "index.html"
-API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyAojEsq0lXZa72ueKJFxy-N3hBHuarw3LI")
+API_KEY = os.environ.get("GEMINI_API_KEY")
 
 def clean_string(val):
     if pd.isna(val):
