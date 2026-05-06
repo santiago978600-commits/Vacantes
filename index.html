@@ -655,8 +655,8 @@
         // Datos que recibirá desde el script de Python (Injectados via Placeholder)
         // {{DATA_JSON}}
         let appData = {
-    "lastUpdate": "2026-05-05 23:39:17",
-    "aiInsight": "**Insight Ejecutivo:** Riesgo cr\u00edtico por vacantes de alta especialidad sin gesti\u00f3n definida y procesos frenados por falta de respuesta de jefaturas. Urge desbloquear validaciones en Calidad y Gesti\u00f3n Cl\u00ednica para evitar par\u00e1lisis en la operaci\u00f3n m\u00e9dico-quir\u00fargica.",
+    "lastUpdate": "2026-05-06 13:28:29",
+    "aiInsight": "Error en an\u00e1lisis AI: 504 Thread is cancelled before we get prefill results.; Failed to close the streaming context; status = CANCELLED: Thread is cancelled before we get prefill results.\n=== Source Location Trace: === \nlearning/gemini/deployment/disaggregation/wiz_cc/async_prefill_server_queues.cc:1049\nlearning/serving/servables/wiz/wiz_servable.cc:2121\nlearning/serving/servables/wiz/wiz_servable.cc:2564\nlearning/serving/servables/wiz/wiz_servable.cc:3658\n;  Failed to run inference for model: go/debugproto  \nname: \"prod-common-global__/aistudio/gemini-v4s-rev23-fiercefalcon-tc__main__/aistudio/gemini-v4s-rev23-fiercefalcon-tc__2026042400__prefill__variantvlp__18a2fe81-d85e-4eda-9533-e74dc03a5d31\"\nversion {\n  value: 1\n}\nsignature_name: \"serving_default\"\n",
     "kpisGerenciales": {
         "indiceCongelamiento": 30.8,
         "volumenActivo": 159.0,
@@ -704,46 +704,9 @@
         "vigentes": 159,
         "validos": 178,
         "meta": 166,
-        "riesgoMulta": 4,
-        "insight": "Sincronizar ingresos en los primeros tres viernes de cada mes para cubrir vencimientos antes de los 20 d\u00edas y proteger el excedente de 12 cupos.",
-        "forecast": [
-            {
-                "fecha": "2026-05-01",
-                "cantidad": 0
-            },
-            {
-                "fecha": "2026-05-08",
-                "cantidad": 10
-            },
-            {
-                "fecha": "2026-05-15",
-                "cantidad": 10
-            },
-            {
-                "fecha": "2026-06-05",
-                "cantidad": 1
-            },
-            {
-                "fecha": "2026-06-12",
-                "cantidad": 0
-            },
-            {
-                "fecha": "2026-06-19",
-                "cantidad": 1
-            },
-            {
-                "fecha": "2026-07-03",
-                "cantidad": 0
-            },
-            {
-                "fecha": "2026-07-10",
-                "cantidad": 2
-            },
-            {
-                "fecha": "2026-07-17",
-                "cantidad": 15
-            }
-        ]
+        "riesgoMulta": 6,
+        "insight": "Error IA: 504 Deadline expired before operation could complete.",
+        "forecast": []
     },
     "vacantes": [
         {
