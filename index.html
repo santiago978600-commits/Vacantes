@@ -655,14 +655,14 @@
         // Datos que recibirá desde el script de Python (Injectados via Placeholder)
         // {{DATA_JSON}}
         let appData = {
-    "lastUpdate": "2026-05-14 16:05:17",
-    "aiInsight": "**Insight Ejecutivo:** Riesgo cr\u00edtico por estancamiento en vacantes de alta especialidad y direccionamiento (Hepatobiliar/Gestores) debido a revisiones pendientes de jefatura. Urge desbloquear decisiones l\u00edderes para evitar cuellos de botella en la operaci\u00f3n cl\u00ednica.",
+    "lastUpdate": "2026-05-14 18:28:29",
+    "aiInsight": "**Insight Ejecutivo:** Riesgo cr\u00edtico: vacantes especializadas con estatus inexistente (nan) y cuellos de botella en validaciones de l\u00edderes. Urge agilizar el feedback de Direcci\u00f3n M\u00e9dica para evitar el estancamiento del proceso y asegurar cobertura de cargos clave.",
     "kpisGerenciales": {
-        "indiceCongelamiento": 30.8,
-        "volumenActivo": 159.0,
-        "capacidadTotal": 229.75,
+        "indiceCongelamiento": 33.7,
+        "volumenActivo": 139.25,
+        "capacidadTotal": 210.0,
         "vacantesCongeladas": 70.75,
-        "eficienciaGeneral": 75.5,
+        "eficienciaGeneral": 72.0,
         "funnel": {
             "labels": [
                 "Reclutamiento",
@@ -670,9 +670,9 @@
                 "Selecci\u00f3n"
             ],
             "data": [
-                30.5,
-                8.5,
-                120.0
+                29.5,
+                9.5,
+                100.25
             ]
         },
         "distribucionProcesos": {
@@ -680,24 +680,24 @@
                 "ENFERMERIA",
                 "LABORATORIO CLINICO",
                 "MANTENIMIENTO",
-                "SERVICIO FARMACEUTIC..",
-                "ONCOLOGIA"
+                "ONCOLOGIA",
+                "FACTURACION"
             ],
             "counts": [
-                73.0,
+                63.0,
                 11.0,
-                8.0,
-                8.0,
-                7.0
+                9.0,
+                7.0,
+                6.0
             ]
         },
         "tendencia": [
-            16,
-            40,
-            64,
-            95,
-            135,
-            159
+            14,
+            35,
+            56,
+            84,
+            118,
+            139
         ]
     },
     "kpisAprendices": {
@@ -705,11 +705,11 @@
         "validos": 179,
         "meta": 166,
         "riesgoMulta": 10,
-        "insight": "Blindaje de cupos: Reemplazos preventivos obligatorios el viernes previo al vencimiento. El 17 de julio es la fecha cr\u00edtica por volumen de agosto.",
+        "insight": "Es imperativo contratar antes de las fechas l\u00edmite para no perder cupos. Se ajust\u00f3 el calendario para cubrir 51 vacantes y asegurar el cumplimiento.",
         "forecast": [
             {
                 "fecha": "2026-05-01",
-                "cantidad": 0
+                "cantidad": 15
             },
             {
                 "fecha": "2026-05-08",
@@ -717,23 +717,15 @@
             },
             {
                 "fecha": "2026-05-15",
-                "cantidad": 10
+                "cantidad": 9
             },
             {
                 "fecha": "2026-06-05",
-                "cantidad": 1
-            },
-            {
-                "fecha": "2026-06-12",
-                "cantidad": 0
+                "cantidad": 2
             },
             {
                 "fecha": "2026-06-19",
                 "cantidad": 1
-            },
-            {
-                "fecha": "2026-07-03",
-                "cantidad": 0
             },
             {
                 "fecha": "2026-07-10",
@@ -746,18 +738,70 @@
             {
                 "fecha": "2026-08-07",
                 "cantidad": 3
-            },
-            {
-                "fecha": "2026-08-14",
-                "cantidad": 0
-            },
-            {
-                "fecha": "2026-08-21",
-                "cantidad": 0
             }
         ]
     },
     "vacantes": [
+        {
+            "proceso": "ACTIVOS FIJOS",
+            "cargo": "AUXILIAR DE ACTIVOS FIJOS",
+            "estado": "Reclutamiento",
+            "psicologa": "Lady",
+            "obs": "RECLUTAMIENTO - PENDIENTE REUNI\u00d3N FERNANDA",
+            "tiempo": 1.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ATENCION AL USUARIO",
+            "cargo": "GESTOR DE EXPERIENCIA AL USUARIO",
+            "estado": "Entrevista",
+            "psicologa": "Lady",
+            "obs": "EN PROCESO - 1",
+            "tiempo": 2.0,
+            "planta": 44.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CARTERA",
+            "cargo": "ANALISTA DE CARTERA",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADO",
+            "tiempo": 1.0,
+            "planta": 3.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR DE ADMISIONES",
+            "estado": "Congelado",
+            "psicologa": "Lady",
+            "obs": "CONGELADO",
+            "tiempo": 2.0,
+            "planta": 27.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD (AUTORIZACIONES)",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "EN PROCESO",
+            "tiempo": 2.0,
+            "planta": 42.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD -REFERENCIA",
+            "estado": "Congelado",
+            "psicologa": "Susana",
+            "obs": "INGRESO 12/05/2026",
+            "tiempo": 1.0,
+            "planta": 42.0,
+            "vinculacion": "FIJO"
+        },
         {
             "proceso": "CLINICAS MEDICAS",
             "cargo": "ELECTROFISIOLOGO (A)",
@@ -826,6 +870,16 @@
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 0.5,
             "planta": 40.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "SONOGRAFISTA",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 3.5,
             "vinculacion": "FIJO"
         },
         {
@@ -952,7 +1006,7 @@
             "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
             "cargo": "GESTOR CLINICO-PARED ABDOMINAL",
             "estado": "En proceso",
-            "psicologa": "Carolina",
+            "psicologa": "Nan",
             "obs": "nan",
             "tiempo": 0.5,
             "planta": 0.5,
@@ -979,6 +1033,16 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
+            "cargo": "AUXILIAR DE ENFERMERIA SERVICIOS PARTICULARES",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "ENTREVISTAS JEFE INMEDIATO - CONVOCATORIA INTERNA",
+            "tiempo": 2.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
             "proceso": "EDUCACION MEDICA",
             "cargo": "PROFESIONAL  DE EDUCACION",
             "estado": "Reclutamiento",
@@ -986,6 +1050,76 @@
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 20",
+            "tiempo": 35.0,
+            "planta": 1048.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO 3",
+            "tiempo": 2.0,
+            "planta": 1048.5,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 6",
+            "tiempo": 20.0,
+            "planta": 446.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO 1",
+            "tiempo": 1.0,
+            "planta": 446.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO  FALLA CARDIACA",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "CARGO NUEVO",
+            "tiempo": 1.0,
+            "planta": 446.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "COORDINADOR DE ENFERMERIA",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "PROCESO EXAMEN MEDICO",
+            "tiempo": 3.0,
+            "planta": 17.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "COORDINADOR DE ENFERMERIA-HUBU",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "ENTREVISTAS JEFE INMEDIATO",
+            "tiempo": 1.0,
+            "planta": 17.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1019,13 +1153,33 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "FINANCIERA",
-            "cargo": "PROFESIONAL FINANCIERO JUNIOR",
+            "proceso": "FACTURACION",
+            "cargo": "FACTURADOR",
             "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO - PASO DIRECTO: JOHAN STEVEN BARRAGAN ZORRO",
+            "psicologa": "Lady",
+            "obs": "EN PROCESO - 5",
+            "tiempo": 5.0,
+            "planta": 76.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FACTURACION",
+            "cargo": "PROFESIONAL DE INFORMACION",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
             "tiempo": 1.0,
-            "planta": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "GESTION CONTABLE",
+            "cargo": "AUXILIAR DE CONTABILIDAD",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "PROCESO EXAMEN MEDICO",
+            "tiempo": 1.0,
+            "planta": 3.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1036,6 +1190,26 @@
             "obs": "PENDIENTE RESPUESTA JEFE",
             "tiempo": 1.0,
             "planta": 3.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "GESTION DOCUMENTAL",
+            "cargo": "AUXILIAR GESTION DOCUMENTAL",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 4.0,
+            "planta": 20.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "GESTI\u00d3N Y DESARROLLO DE PERSONAS",
+            "cargo": "PROFESIONAL DE SELECCI\u00d3N SENIOR",
+            "estado": "Reclutamiento",
+            "psicologa": "Nan",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1066,6 +1240,36 @@
             "obs": "SE ENVIAN - PROMOCI\u00d3N - DANA",
             "tiempo": 1.0,
             "planta": 14.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "IMAGENES DIAGNOSTICAS",
+            "cargo": "AUXILIAR ADMIN IM\u00c1GENES DIAGN\u00d3STICAS",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 7.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "JURIDICA",
+            "cargo": "PROFESIONAL JURIDICO SENIOR",
+            "estado": "Entrevista",
+            "psicologa": "Carolina",
+            "obs": "ENTREVISTA",
+            "tiempo": 1.0,
+            "planta": 6.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "JURIDICA",
+            "cargo": "AUXILIAR ADMINISTRATIVO (A)",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1132,8 +1336,18 @@
             "proceso": "LABORATORIO CLINICO",
             "cargo": "PROFESIONAL EN BIOLOGIA MOLECULAR JUNIOR",
             "estado": "Reclutamiento",
-            "psicologa": "Carolina",
+            "psicologa": "Nan",
             "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
+            "estado": "Reclutamiento",
+            "psicologa": "Yulieth",
+            "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1209,6 +1423,36 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "INGENIERO BIOMEDICO JUNIOR",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - EXAMENES MEDICOS",
+            "tiempo": 2.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "INGENIERO BIOMEDICO",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - DINA LUZ SANDOVAL BUITRAGO",
+            "tiempo": 1.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "TECNOLOGO  BIOMEDICO",
+            "estado": "Entrevista",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 2 EXAMENES MEDICOS",
+            "tiempo": 1.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
             "proceso": "ONCOLOGIA",
             "cargo": "ENFERMERO NAVEGACION",
             "estado": "Reclutamiento",
@@ -1216,6 +1460,16 @@
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 2.0,
             "planta": 6.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ONCOLOGIA",
+            "cargo": "AUXILIARES DE NAVEGACION",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "nan",
+            "tiempo": 5.0,
+            "planta": 5.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1256,6 +1510,16 @@
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "PLANTA  FISICA",
+            "cargo": "PROFESIONAL JUNIOR PLANTA F\u00cdSICA",
+            "estado": "Congelado",
+            "psicologa": "Natalia",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 4.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1409,6 +1673,36 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "SERVICIO FARMACEUTICO",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 31.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "SERVICIO FARMACEUTICO",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "RECLUTAMIENTO",
+            "tiempo": 4.0,
+            "planta": 31.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SERVICIO FARMACEUTICO",
+            "cargo": "COORDINADOR DE FARMACIA",
+            "estado": "Congelado",
+            "psicologa": "Susana",
+            "obs": "nan",
+            "tiempo": 2.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "COORDINADOR INTEROPERABILIDAD",
             "estado": "Entrevista",
@@ -1449,176 +1743,6 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "URGENCIAS",
-            "cargo": "EMERGENCIOLOGO",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO",
-            "tiempo": 2.0,
-            "planta": 9.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "URGENCIAS",
-            "cargo": "MEDICO GENERAL",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO 1 CANDIDATOS",
-            "tiempo": 1.0,
-            "planta": 91.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ACTIVOS FIJOS",
-            "cargo": "AUXILIAR DE ACTIVOS FIJOS",
-            "estado": "Reclutamiento",
-            "psicologa": "Lady",
-            "obs": "RECLUTAMIENTO - PENDIENTE REUNI\u00d3N FERNANDA",
-            "tiempo": 1.0,
-            "planta": 5.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ATENCION AL USUARIO",
-            "cargo": "GESTOR DE EXPERIENCIA AL USUARIO",
-            "estado": "Entrevista",
-            "psicologa": "Lady",
-            "obs": "EN PROCESO - 1",
-            "tiempo": 2.0,
-            "planta": 44.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR DE ADMISIONES",
-            "estado": "Congelado",
-            "psicologa": "Lady",
-            "obs": "CONGELADO",
-            "tiempo": 2.0,
-            "planta": 27.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD (AUTORIZACIONES)",
-            "estado": "En proceso",
-            "psicologa": "Lady",
-            "obs": "EN PROCESO",
-            "tiempo": 2.0,
-            "planta": 42.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "FACTURACION",
-            "cargo": "FACTURADOR",
-            "estado": "En proceso",
-            "psicologa": "Lady",
-            "obs": "EN PROCESO - 5",
-            "tiempo": 5.0,
-            "planta": 76.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "SOPORTE TECNICO SERVINTE",
-            "estado": "Reclutamiento",
-            "psicologa": "Lady",
-            "obs": "CONVOCATORIA INTERNA",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TESORERIA",
-            "cargo": "CAJEROS",
-            "estado": "En proceso",
-            "psicologa": "Lady",
-            "obs": "nan",
-            "tiempo": 1.0,
-            "planta": 8.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CARTERA",
-            "cargo": "ANALISTA DE CARTERA",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADO",
-            "tiempo": 1.0,
-            "planta": 3.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "FACTURACION",
-            "cargo": "PROFESIONAL DE INFORMACION",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADA",
-            "tiempo": 1.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "GESTION DOCUMENTAL",
-            "cargo": "AUXILIAR GESTION DOCUMENTAL",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADA",
-            "tiempo": 4.0,
-            "planta": 20.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "GESTI\u00d3N Y DESARROLLO DE PERSONAS",
-            "cargo": "PROFESIONAL DE SELECCI\u00d3N SENIOR",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "nan",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "IMAGENES DIAGNOSTICAS",
-            "cargo": "AUXILIAR ADMIN IM\u00c1GENES DIAGN\u00d3STICAS",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADA",
-            "tiempo": 1.0,
-            "planta": 7.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "JURIDICA",
-            "cargo": "AUXILIAR ADMINISTRATIVO (A)",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADA",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "PLANTA  FISICA",
-            "cargo": "PROFESIONAL JUNIOR PLANTA F\u00cdSICA",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADA",
-            "tiempo": 1.0,
-            "planta": 4.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "PROGRAMAS ESPECIALES",
-            "cargo": "AUXILIAR ADMINISTRATIVO (A)",
-            "estado": "En proceso",
-            "psicologa": "Natalia",
-            "obs": "EN PROCESO MARIA CAMILA DUARTES",
-            "tiempo": 1.0,
-            "planta": 7.0,
-            "vinculacion": "FIJO"
-        },
-        {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "PROFESIONAL DE TICS II",
             "estado": "Congelado",
@@ -1639,206 +1763,6 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD -REFERENCIA",
-            "estado": "Congelado",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO 2 CANDIDATOS - EXAMEN MEDICO",
-            "tiempo": 1.0,
-            "planta": 42.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CLINICAS MEDICAS",
-            "cargo": "SONOGRAFISTA",
-            "estado": "Reclutamiento",
-            "psicologa": "Susana",
-            "obs": "RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 3.5,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
-            "cargo": "AUXILIAR DE ENFERMERIA SERVICIOS PARTICULARES",
-            "estado": "Reclutamiento",
-            "psicologa": "Susana",
-            "obs": "ENTREVISTAS JEFE INMEDIATO",
-            "tiempo": 2.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "AUXILIAR DE ENFERMERIA",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - 30",
-            "tiempo": 38.0,
-            "planta": 1048.5,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "AUXILIAR DE ENFERMERIA",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO 3",
-            "tiempo": 2.0,
-            "planta": 1048.5,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "ENFERMERO",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - 6",
-            "tiempo": 27.0,
-            "planta": 446.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "ENFERMERO",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO 1",
-            "tiempo": 1.0,
-            "planta": 446.0,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "ENFERMERO  FALLA CARDIACA",
-            "estado": "Reclutamiento",
-            "psicologa": "Susana",
-            "obs": "CARGO NUEVO",
-            "tiempo": 1.0,
-            "planta": 446.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "COORDINADOR DE ENFERMERIA",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "PROCESO EXAMEN MEDICO",
-            "tiempo": 3.0,
-            "planta": 17.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "COORDINADOR DE ENFERMERIA-HUBU",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "PROCESO EXAMEN MEDICO",
-            "tiempo": 1.0,
-            "planta": 17.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "GESTION CONTABLE",
-            "cargo": "AUXILIAR DE CONTABILIDAD",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "PROCESO EXAMEN MEDICO",
-            "tiempo": 1.0,
-            "planta": 3.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "MANTENIMIENTO",
-            "cargo": "INGENIERO BIOMEDICO JUNIOR",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO 2",
-            "tiempo": 2.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "nan",
-            "cargo": "INGENIERO BIOMEDICO",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - DINA LUZ SANDOVAL BUITRAGO",
-            "tiempo": 1.0,
-            "planta": 4.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "MANTENIMIENTO",
-            "cargo": "TECNOLOGO  BIOMEDICO",
-            "estado": "Entrevista",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - 3",
-            "tiempo": 1.0,
-            "planta": 5.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ONCOLOGIA",
-            "cargo": "AUXILIARES DE NAVEGACION",
-            "estado": "Reclutamiento",
-            "psicologa": "Susana",
-            "obs": "nan",
-            "tiempo": 5.0,
-            "planta": 5.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "SERVICIO FARMACEUTICO",
-            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
-            "estado": "Reclutamiento",
-            "psicologa": "Susana",
-            "obs": "RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 31.0,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "SERVICIO FARMACEUTICO",
-            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO",
-            "tiempo": 6.0,
-            "planta": 31.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "SERVICIO FARMACEUTICO",
-            "cargo": "REGENTE DE FARMACIA",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO",
-            "tiempo": 1.0,
-            "planta": 14.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "SERVICIO FARMACEUTICO",
-            "cargo": "COORDINADOR DE FARMACIA",
-            "estado": "Congelado",
-            "psicologa": "Susana",
-            "obs": "nan",
-            "tiempo": 2.0,
-            "planta": 4.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "LABORATORIO CLINICO",
-            "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
-            "estado": "Reclutamiento",
-            "psicologa": "Yulieth",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "JEFE DE TECNOLOG\u00cdAS DE LA INFO Y COM",
             "estado": "Reclutamiento",
@@ -1849,23 +1773,13 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "PATOLOGIA",
-            "cargo": "MEDICO PATOLOGO",
+            "proceso": "URGENCIAS",
+            "cargo": "EMERGENCIOLOGO",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO 1 CANDIDATO",
-            "tiempo": 0.75,
-            "planta": 4.5,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "PROGRAMAS ESPECIALES",
-            "cargo": "AUXILIAR ADMINISTRATIVO CLINICA DEL DOLOR",
-            "estado": "En proceso",
-            "psicologa": "Lady",
-            "obs": "SELECCIONADO",
+            "obs": "EN PROCESO",
             "tiempo": 1.0,
-            "planta": 1.0,
+            "planta": 9.0,
             "vinculacion": "FIJO"
         }
     ],
@@ -2174,19 +2088,19 @@
     "stats": {
         "estados": {
             "names": [
+                "Reclutamiento",
+                "Entrevista",
                 "En proceso",
                 "En revisi\u00f3n",
                 "Convocatoria Interna",
-                "Reclutamiento",
-                "Entrevista",
                 "Seleccionado"
             ],
             "counts": [
-                119.0,
+                29.0,
+                9.0,
+                99.25,
                 0.5,
                 0.5,
-                30.0,
-                8.0,
                 1.0
             ]
         }
