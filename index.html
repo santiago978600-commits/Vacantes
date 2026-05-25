@@ -655,14 +655,14 @@
         // Datos que recibirá desde el script de Python (Injectados via Placeholder)
         // {{DATA_JSON}}
         let appData = {
-    "lastUpdate": "2026-05-22 23:57:41",
-    "aiInsight": "**Insight Ejecutivo:**  Riesgo de par\u00e1lisis operativa: Vacantes cr\u00edticas de alta especialidad (Cirujano Hepatobiliar y Pared Abdominal) sin gesti\u00f3n (\"nan\") y cuello de botella en aprobaci\u00f3n m\u00e9dica (Ortopedia). Urge definir estatus e impulsar reclutamiento.",
+    "lastUpdate": "2026-05-25 14:31:19",
+    "aiInsight": "**Riesgo cr\u00edtico:** Vacantes m\u00e9dicas de alta especialidad (Hepatobiliar y Pared Abdominal) est\u00e1n desatendidas ('nan'), mientras que BI y Experiencia siguen en fase administrativa (BUXIS). Urge activar reclutamiento para evitar vac\u00edos operativos.",
     "kpisGerenciales": {
-        "indiceCongelamiento": 33.7,
-        "volumenActivo": 139.25,
-        "capacidadTotal": 210.0,
-        "vacantesCongeladas": 70.75,
-        "eficienciaGeneral": 72.0,
+        "indiceCongelamiento": 30.6,
+        "volumenActivo": 151.25,
+        "capacidadTotal": 218.0,
+        "vacantesCongeladas": 66.75,
+        "eficienciaGeneral": 74.2,
         "funnel": {
             "labels": [
                 "Reclutamiento",
@@ -672,44 +672,44 @@
             "data": [
                 29.5,
                 9.5,
-                100.25
+                112.25
             ]
         },
         "distribucionProcesos": {
             "names": [
                 "ENFERMERIA",
-                "LABORATORIO CLINICO",
                 "MANTENIMIENTO",
-                "ONCOLOGIA",
-                "FACTURACION"
+                "CLINICAS MEDICAS",
+                "LABORATORIO CLINICO",
+                "ONCOLOGIA"
             ],
             "counts": [
                 63.0,
-                11.0,
                 9.0,
                 7.0,
-                6.0
+                7.0,
+                7.0
             ]
         },
         "tendencia": [
-            14,
-            35,
-            56,
-            84,
-            118,
-            139
+            15,
+            38,
+            60,
+            91,
+            129,
+            151
         ]
     },
     "kpisAprendices": {
         "vigentes": 164,
-        "validos": 170,
+        "validos": 169,
         "meta": 166,
-        "riesgoMulta": 4,
-        "insight": "Estrategia focalizada en anticipar ingresos los viernes h\u00e1biles permitidos para mantener los 170 cupos y evitar multas por debajo del m\u00ednimo de 166.",
+        "riesgoMulta": 3,
+        "insight": "Estrategia de reemplazo JIT focalizada en mitigar el pico de julio y mantener el pool de 169 cupos activos.",
         "forecast": [
             {
                 "fecha": "2026-05-15",
-                "cantidad": 5
+                "cantidad": 4
             },
             {
                 "fecha": "2026-06-05",
@@ -840,6 +840,16 @@
         },
         {
             "proceso": "CLINICAS MEDICAS",
+            "cargo": "CARDIOLOGO CL\u00cdNICO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO",
+            "tiempo": 1.0,
+            "planta": 8.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
             "cargo": "MEDICO GENERAL -FALLA CARDIACA",
             "estado": "Congelado",
             "psicologa": "Carolina",
@@ -851,10 +861,10 @@
         {
             "proceso": "CLINICAS MEDICAS",
             "cargo": "MEDICO GENERAL -HX",
-            "estado": "Congelado",
+            "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "LA FECHA DE NO RENOVACION ES EN MAYO",
-            "tiempo": 1.0,
+            "obs": "EN PROCESO 3",
+            "tiempo": 3.0,
             "planta": 103.0,
             "vinculacion": "FIJO"
         },
@@ -866,6 +876,16 @@
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 0.5,
             "planta": 40.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "INTERNISTA",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - 2",
+            "tiempo": 2.0,
+            "planta": 39.25,
             "vinculacion": "FIJO"
         },
         {
@@ -989,6 +1009,16 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "DIRECCI\u00d3N TECNICA",
+            "cargo": "PROFESIONAL JUNIOR DE DESARROLLO BI",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "BUXIS 1055",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
             "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
             "cargo": "GESTOR CLINICO-ORTOPEDIA",
             "estado": "En revisi\u00f3n",
@@ -1021,10 +1051,10 @@
         {
             "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
             "cargo": "GESTOR DE EXPERIENCIA",
-            "estado": "Congelado",
+            "estado": "Reclutamiento",
             "psicologa": "Carolina",
-            "obs": "CONGELADA",
-            "tiempo": 3.0,
+            "obs": "BUXIS 1054",
+            "tiempo": 1.0,
             "planta": 27.0,
             "vinculacion": "FIJO"
         },
@@ -1139,6 +1169,16 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "ESTERILIZACION",
+            "cargo": "AUXILIAR DE ESTERILIZACI\u00d3N",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - 1",
+            "tiempo": 1.0,
+            "planta": 26.0,
+            "vinculacion": "FIJO"
+        },
+        {
             "proceso": "FACTURACION",
             "cargo": "PROFESIONAL DE INFORMACION",
             "estado": "Reclutamiento",
@@ -1202,7 +1242,7 @@
             "proceso": "GESTI\u00d3N Y DESARROLLO DE PERSONAS",
             "cargo": "PROFESIONAL DE SELECCI\u00d3N SENIOR",
             "estado": "Reclutamiento",
-            "psicologa": "Nan",
+            "psicologa": "Carolina",
             "obs": "nan",
             "tiempo": 1.0,
             "planta": 1.0,
@@ -1211,10 +1251,10 @@
         {
             "proceso": "IMAGENES DIAGNOSTICAS",
             "cargo": "TECNOLOGO RADIOLOGIA CONVENCIONAL SPN",
-            "estado": "Reclutamiento",
+            "estado": "En proceso",
             "psicologa": "Carolina",
             "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
+            "tiempo": 2.0,
             "planta": 3.0,
             "vinculacion": "FIJO"
         },
@@ -1283,8 +1323,8 @@
             "cargo": "AUXILIAR DE LABORATORIO JUNIOR",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO - 2 -  CLARA GINETH APARICIO MANRIQUE - INILDA MONTOYA",
-            "tiempo": 4.0,
+            "obs": "EN PROCESO - 2 -  HEYDY YURANNY HURTADO MESA",
+            "tiempo": 2.0,
             "planta": 33.0,
             "vinculacion": "FIJO"
         },
@@ -1293,8 +1333,8 @@
             "cargo": "BACTERIOLOGO",
             "estado": "Reclutamiento",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO 3 CANDIDATOS",
-            "tiempo": 3.0,
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
             "planta": 22.0,
             "vinculacion": "FIJO"
         },
@@ -1332,7 +1372,7 @@
             "proceso": "LABORATORIO CLINICO",
             "cargo": "PROFESIONAL EN BIOLOGIA MOLECULAR JUNIOR",
             "estado": "Reclutamiento",
-            "psicologa": "Nan",
+            "psicologa": "Carolina",
             "obs": "nan",
             "tiempo": 1.0,
             "planta": 1.0,
@@ -1750,6 +1790,26 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL DE SISTEMAS II - SEG. DE LA INFORMACI\u00d3N",
+            "estado": "Reclutamiento",
+            "psicologa": "Natalia",
+            "obs": "PTE ENTREVISTA DE JEFE INMEDIATO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "SOPORTE TECNICO",
+            "estado": "En proceso",
+            "psicologa": "Natalia",
+            "obs": "EN PROCESO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "PROFESIONAL  INNOVACION Y SALUD DIGITAL",
             "estado": "Congelado",
             "psicologa": "Natalia",
@@ -1770,10 +1830,20 @@
         },
         {
             "proceso": "URGENCIAS",
+            "cargo": "MEDICO GENERAL",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN PROCESO - INGRESO 3 - 1 ENTREVISTA",
+            "tiempo": 4.0,
+            "planta": 139.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "URGENCIAS",
             "cargo": "EMERGENCIOLOGO",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO",
+            "obs": "EN PROCESO - SEBASTIAN SALVADOR BARRERA BELTRAN",
             "tiempo": 1.0,
             "planta": 9.0,
             "vinculacion": "FIJO"
@@ -2100,7 +2170,7 @@
             "counts": [
                 29.0,
                 9.0,
-                99.25,
+                111.25,
                 0.5,
                 0.5,
                 1.0
