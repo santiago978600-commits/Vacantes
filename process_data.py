@@ -137,7 +137,19 @@ def process():
     else:
         print("Aviso: No se encontró la hoja de FPP (Hoja3 o FPP).")
     
-    ai_insight = "No se ejecutó el análisis de IA (API_KEY ausente)."
+    # Extraer insights anteriores para preservarlos si no hay API_KEY
+    old_ai_insight = "Análisis pendiente."
+    try:
+        if os.path.exists(HTML_PATH):
+            with open(HTML_PATH, 'r', encoding='utf-8') as f:
+                content = f.read()
+                m = re.search(r'"aiInsight":\s*"(.*?)"', content)
+                if m:
+                    old_ai_insight = m.group(1).encode().decode('unicode_escape')
+    except:
+        pass
+
+    ai_insight = old_ai_insight
     if API_KEY:
         try:
             import google.generativeai as genai
@@ -228,8 +240,26 @@ def process():
             # Lista de próximos vencimientos (fechas limites)
             vencimientos = validos_df[(validos_df['Limit_Date'] >= today) & (validos_df['Limit_Date'] <= next_3_months)]['Limit_Date'].dt.strftime('%Y-%m-%d').tolist()
             
-            ai_insight_apr = "Análisis pendiente."
-            forecast_data = []
+            old_ai_insight_apr = "Análisis pendiente."
+            old_forecast_data = []
+            try:
+                if os.path.exists(HTML_PATH):
+                    with open(HTML_PATH, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        m1 = re.search(r'"kpisAprendices":\s*\{.*?"insight":\s*"(.*?)",.*?"forecast":\s*(\[.*?\])\s*\}', content, re.DOTALL)
+                        if m1:
+                            old_ai_insight_apr = m1.group(1).encode().decode('unicode_escape')
+                            import ast
+                            # A simple way to get the old forecast if possible, else empty
+                            try:
+                                old_forecast_data = json.loads(m1.group(2))
+                            except:
+                                pass
+            except:
+                pass
+
+            ai_insight_apr = old_ai_insight_apr
+            forecast_data = old_forecast_data
             
             if API_KEY:
                 try:

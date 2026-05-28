@@ -14,7 +14,7 @@ LOCAL_FILE_NAME = "Informe vacantes Auto.xlsx"
 def download_file():
     if not all([CLIENT_ID, TENANT_ID, REFRESH_TOKEN]):
         print("Error: Faltan credenciales de Microsoft Graph en las variables de entorno.")
-        return False
+        import sys; sys.exit(1)
 
     authority = f"https://login.microsoftonline.com/{TENANT_ID}"
     app = msal.PublicClientApplication(CLIENT_ID, authority=authority)
@@ -24,7 +24,7 @@ def download_file():
 
     if "access_token" not in result:
         print(f"Error al obtener token: {result.get('error_description')}")
-        return False
+        import sys; sys.exit(1)
 
     access_token = result['access_token']
     headers = {'Authorization': f'Bearer {access_token}'}
@@ -36,7 +36,7 @@ def download_file():
     response = requests.get(site_url, headers=headers)
     if response.status_code != 200:
         print(f"Error al obtener el drive del sitio: {response.text}")
-        return False
+        import sys; sys.exit(1)
     
     drive_id = response.json()['id']
 
@@ -52,7 +52,7 @@ def download_file():
         return True
     else:
         print(f"Error al descargar el archivo: {response.status_code} - {response.text}")
-        return False
+        import sys; sys.exit(1)
 
 if __name__ == "__main__":
     download_file()

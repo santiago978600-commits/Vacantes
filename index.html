@@ -655,14 +655,14 @@
         // Datos que recibirá desde el script de Python (Injectados via Placeholder)
         // {{DATA_JSON}}
         let appData = {
-    "lastUpdate": "2026-05-28 21:03:12",
-    "aiInsight": "**Insight Ejecutivo:** Riesgo cr\u00edtico por alta concentraci\u00f3n en Enfermer\u00eda (28 vacantes) y cuellos de botella por decisiones externas (Fernanda/Dr. Solano). Se requiere priorizar la operaci\u00f3n de enfermer\u00eda y destrabar aprobaciones para evitar vac\u00edos asistenciales.",
+    "lastUpdate": "2026-05-28 16:14:23",
+    "aiInsight": "**Insight Ejecutivo:** Riesgo crítico por saturación en Enfermería (68 vacantes). Se requiere plan de choque para este volumen y priorizar la selección en Farmacia y Facturación (11 vacantes cada uno).",
     "kpisGerenciales": {
-        "indiceCongelamiento": 33.8,
-        "volumenActivo": 145.0,
-        "capacidadTotal": 219.0,
-        "vacantesCongeladas": 74.0,
-        "eficienciaGeneral": 64.1,
+        "indiceCongelamiento": 29.1,
+        "volumenActivo": 155.5,
+        "capacidadTotal": 219.25,
+        "vacantesCongeladas": 63.75,
+        "eficienciaGeneral": 81.4,
         "funnel": {
             "labels": [
                 "Reclutamiento",
@@ -670,42 +670,42 @@
                 "Selecci\u00f3n"
             ],
             "data": [
-                42.0,
-                10.0,
-                93.0
+                22.0,
+                7.0,
+                126.5
             ]
         },
         "distribucionProcesos": {
             "names": [
                 "ENFERMERIA",
-                "LABORATORIO CLINICO",
-                "LOGISTICA Y SUMINIST..",
+                "FACTURACION",
+                "SERVICIO FARMACEUTIC..",
                 "MANTENIMIENTO",
-                "ONCOLOGIA"
+                "CLINICAS MEDICAS"
             ],
             "counts": [
                 68.0,
+                11.0,
+                11.0,
                 10.0,
-                8.0,
-                8.0,
                 7.0
             ]
         },
         "tendencia": [
-            14,
-            36,
-            58,
-            87,
-            123,
-            145
+            16,
+            39,
+            62,
+            93,
+            132,
+            156
         ]
     },
     "kpisAprendices": {
-        "vigentes": 159,
-        "validos": 160,
+        "vigentes": 166,
+        "validos": 171,
         "meta": 166,
-        "riesgoMulta": 1,
-        "insight": "Estrategia de anticipaci\u00f3n en viernes h\u00e1biles para cubrir el d\u00e9ficit inicial de 6 cupos y reemplazar proactivamente 27 vencimientos programados.",
+        "riesgoMulta": 2,
+        "insight": "**Estrategia:** Mantener ritmo de contratación de 3 aprendices cada viernes para mitigar riesgo de multa y sostener cuota.",
         "forecast": [
             {
                 "fecha": "2026-05-01",
@@ -745,9 +745,9 @@
         {
             "proceso": "ACTIVOS FIJOS",
             "cargo": "AUXILIAR DE ACTIVOS FIJOS",
-            "estado": "Reclutamiento",
+            "estado": "En proceso",
             "psicologa": "Lady",
-            "obs": "RECLUTAMIENTO - PENDIENTE REUNI\u00d3N FERNANDA",
+            "obs": "EN PROCESO - JUAN DIEGO MORENO CARDENAS",
             "tiempo": 1.0,
             "planta": 5.0,
             "vinculacion": "FIJO"
@@ -755,10 +755,10 @@
         {
             "proceso": "ATENCION AL USUARIO",
             "cargo": "GESTOR DE EXPERIENCIA AL USUARIO",
-            "estado": "Entrevista",
+            "estado": "En proceso",
             "psicologa": "Lady",
-            "obs": "EN PROCESO - 1",
-            "tiempo": 1.0,
+            "obs": "EN PROCESO -  MARIA FERNANDA GOMEZ - ANGIE NATALIA",
+            "tiempo": 2.0,
             "planta": 44.0,
             "vinculacion": "FIJO"
         },
@@ -784,10 +784,10 @@
         },
         {
             "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD (AUTORIZACIONES)",
             "estado": "En proceso",
             "psicologa": "Lady",
-            "obs": "EN PROCESO",
+            "obs": "EN PROCESO 1- LUZ MARINA MARTINEZ\n2 - ZULLY JULIETH AVILA PEREA",
             "tiempo": 1.0,
             "planta": 42.0,
             "vinculacion": "FIJO"
@@ -795,9 +795,9 @@
         {
             "proceso": "CENTRAL DE MOVILIDAD",
             "cargo": "AUXILIAR CENTRAL DE MOVILIDAD -REFERENCIA",
-            "estado": "Congelado",
+            "estado": "En proceso",
             "psicologa": "Susana",
-            "obs": "RECLUTAMIENTO",
+            "obs": "EN PROCESO - EXAMENES MEDICOS",
             "tiempo": 1.0,
             "planta": 42.0,
             "vinculacion": "FIJO"
@@ -824,16 +824,6 @@
         },
         {
             "proceso": "CLINICAS MEDICAS",
-            "cargo": "SONOGRAFISTA",
-            "estado": "Reclutamiento",
-            "psicologa": "Susana",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 3.5,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CLINICAS MEDICAS",
             "cargo": "NEUROLOGO",
             "estado": "Congelado",
             "psicologa": "Carolina",
@@ -854,6 +844,16 @@
         },
         {
             "proceso": "CLINICAS MEDICAS",
+            "cargo": "CARDIOLOGO CL\u00cdNICO",
+            "estado": "Seleccionado",
+            "psicologa": "Carolina",
+            "obs": "ANDRES FELIPE OCHOA DIAZ",
+            "tiempo": 1.0,
+            "planta": 8.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
             "cargo": "MEDICO GENERAL -FALLA CARDIACA",
             "estado": "Congelado",
             "psicologa": "Carolina",
@@ -865,21 +865,11 @@
         {
             "proceso": "CLINICAS MEDICAS",
             "cargo": "MEDICO GENERAL -HX",
-            "estado": "Reclutamiento",
+            "estado": "Seleccionado",
             "psicologa": "Carolina",
-            "obs": "nan",
-            "tiempo": 2.0,
-            "planta": 0.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CLINICAS MEDICAS",
-            "cargo": "MEDICO GENERAL -HX",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "LA FECHA DE NO RENOVACION ES EN MAYO",
-            "tiempo": 1.0,
-            "planta": 0.0,
+            "obs": "EN PROCESO",
+            "tiempo": 3.0,
+            "planta": 103.0,
             "vinculacion": "FIJO"
         },
         {
@@ -890,6 +880,26 @@
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 0.5,
             "planta": 40.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "INTERNISTA",
+            "estado": "Seleccionado",
+            "psicologa": "Carolina",
+            "obs": "JUAN SEBASTIAN BONILLA CRESPO",
+            "tiempo": 2.0,
+            "planta": 39.25,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "SONOGRAFISTA",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 3.5,
             "vinculacion": "FIJO"
         },
         {
@@ -964,26 +974,6 @@
         },
         {
             "proceso": "CLINICAS QUIRURGICAS",
-            "cargo": "CIRUJANO VASCULAR",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "VACACIONES A PARTIR DEL 13 DE ABRIL",
-            "tiempo": 1.0,
-            "planta": 4.0,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "CLINICAS QUIRURGICAS",
-            "cargo": "CIRUJANO HEPATOBILIAR",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "nan",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CLINICAS QUIRURGICAS",
             "cargo": "OTORRINOLARINGOLOGO",
             "estado": "Congelado",
             "psicologa": "Carolina",
@@ -997,7 +987,7 @@
             "cargo": "OTORRINOLARINGOLOGO",
             "estado": "Congelado",
             "psicologa": "Carolina",
-            "obs": "|",
+            "obs": "CONGELADO POR EL DR NAVARRO",
             "tiempo": 0.5,
             "planta": 3.5,
             "vinculacion": "FIJO"
@@ -1013,22 +1003,32 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
-            "cargo": "GESTOR CLINICO-ORTOPEDIA Y PARED ABDOMINAL",
-            "estado": "En revisi\u00f3n",
+            "proceso": "DIRECCI\u00d3N TECNICA",
+            "cargo": "PROFESIONAL JUNIOR DE DESARROLLO BI",
+            "estado": "Reclutamiento",
             "psicologa": "Carolina",
-            "obs": "EN REVISI\u00d3N POR DR. ALLAN SOLANO\nDra. Toloza, de acuerdo a reuni\u00f3n",
+            "obs": "BUXIS 1055",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
-            "cargo": "GESTOR DE EXPERIENCIA",
-            "estado": "Congelado",
+            "cargo": "GESTOR CLINICO-ORTOPEDIA",
+            "estado": "Seleccionado",
             "psicologa": "Carolina",
-            "obs": "CONGELADA",
-            "tiempo": 3.0,
+            "obs": "FERNANDA TOLOSA",
+            "tiempo": 0.5,
+            "planta": 0.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
+            "cargo": "GESTOR DE EXPERIENCIA",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "BUXIS 1054",
+            "tiempo": 1.0,
             "planta": 27.0,
             "vinculacion": "FIJO"
         },
@@ -1037,27 +1037,17 @@
             "cargo": "AUXILIAR DE ENFERMERIA SERVICIOS PARTICULARES",
             "estado": "Reclutamiento",
             "psicologa": "Susana",
-            "obs": "ENTREVISTAS",
-            "tiempo": 1.0,
+            "obs": "ENTREVISTAS JEFE INMEDIATO - CONVOCATORIA INTERNA",
+            "tiempo": 2.0,
             "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
-            "cargo": "GESTOR CLINICO- INSTITUTO DE LA MUJER",
-            "estado": "Convocatoria Interna",
-            "psicologa": "Carolina",
-            "obs": "CONVOCATORIA INTERNA",
-            "tiempo": 1.0,
-            "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "EDUCACION MEDICA",
             "cargo": "PROFESIONAL  DE EDUCACION",
-            "estado": "Reclutamiento",
+            "estado": "Convocatoria Interna",
             "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
+            "obs": "PAULA KATHERINE ROMERO",
             "tiempo": 1.0,
             "planta": 2.0,
             "vinculacion": "FIJO"
@@ -1067,17 +1057,17 @@
             "cargo": "AUXILIAR DE ENFERMERIA",
             "estado": "En proceso",
             "psicologa": "Susana",
-            "obs": "EN PROCESO - 20",
-            "tiempo": 36.0,
+            "obs": "EN PROCESO - 37",
+            "tiempo": 42.0,
             "planta": 1048.5,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "ENFERMERIA",
             "cargo": "AUXILIAR DE ENFERMERIA",
-            "estado": "Reclutamiento",
+            "estado": "En proceso",
             "psicologa": "Susana",
-            "obs": "EN PROCESO 1",
+            "obs": "EN PROCESO 2",
             "tiempo": 2.0,
             "planta": 1048.5,
             "vinculacion": "OBRA O LABOR"
@@ -1087,8 +1077,8 @@
             "cargo": "ENFERMERO",
             "estado": "En proceso",
             "psicologa": "Susana",
-            "obs": "EN PROCESO - 6",
-            "tiempo": 24.0,
+            "obs": "EN PROCESO - 12",
+            "tiempo": 18.0,
             "planta": 446.0,
             "vinculacion": "FIJO"
         },
@@ -1098,26 +1088,16 @@
             "estado": "En proceso",
             "psicologa": "Susana",
             "obs": "EN PROCESO 1",
-            "tiempo": 1.0,
+            "tiempo": 2.0,
             "planta": 446.0,
             "vinculacion": "OBRA O LABOR"
         },
         {
             "proceso": "ENFERMERIA",
-            "cargo": "ENFERMERO  FALLA CARDIACA",
-            "estado": "Reclutamiento",
-            "psicologa": "Susana",
-            "obs": "CARGO NUEVO",
-            "tiempo": 1.0,
-            "planta": 446.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ENFERMERIA",
             "cargo": "COORDINADOR DE ENFERMERIA",
-            "estado": "Entrevista",
+            "estado": "En proceso",
             "psicologa": "Susana",
-            "obs": "PENDIENTE ENTREVISTA JEFE INMEDIATO",
+            "obs": "PROCESO EXAMEN MEDICO",
             "tiempo": 3.0,
             "planta": 17.0,
             "vinculacion": "FIJO"
@@ -1125,50 +1105,60 @@
         {
             "proceso": "ENFERMERIA",
             "cargo": "COORDINADOR DE ENFERMERIA-HUBU",
-            "estado": "Entrevista",
+            "estado": "Reclutamiento",
             "psicologa": "Susana",
-            "obs": "PENDIENTE ENTREVISTA JEFE INMEDIATO",
+            "obs": "RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 17.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "ESTERILIZACION",
-            "cargo": "AUXILIAR DE ESTERILIZACION",
-            "estado": "Seleccionado",
-            "psicologa": "Carolina",
-            "obs": "Finalizado",
-            "tiempo": 0.0,
-            "planta": 26.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ESTERILIZACION",
             "cargo": "INSTRUMENTADOR QUIRURGICO",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO 1 - 1\u00b0 JUNIO - ALEJANDRA BELE\u00d1O",
-            "tiempo": 1.0,
+            "obs": "LAURA VALENTINA HUERTAS RINC\u00d3N",
+            "tiempo": 2.0,
             "planta": 61.0,
             "vinculacion": "OBRA O LABOR"
         },
         {
             "proceso": "ESTERILIZACION",
-            "cargo": "INSTRUMENTADOR QUIRURGICO",
+            "cargo": "AUXILIAR DE ESTERILIZACI\u00d3N",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO - 1",
-            "tiempo": 2.0,
-            "planta": 61.0,
+            "obs": "MIGUEL DAVID GONZALEZ RODRIGUEZ",
+            "tiempo": 1.0,
+            "planta": 26.0,
             "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FACTURACION",
+            "cargo": "PROFESIONAL DE INFORMACION",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "EN PROCESO",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FACTURACION",
+            "cargo": "FACTURADOR",
+            "estado": "Reclutamiento",
+            "psicologa": "Lady",
+            "obs": "RECLUTAMIENTO",
+            "tiempo": 4.0,
+            "planta": 5.0,
+            "vinculacion": "OBRA O LABOR"
         },
         {
             "proceso": "FACTURACION",
             "cargo": "FACTURADOR",
             "estado": "En proceso",
             "psicologa": "Lady",
-            "obs": "EN PROCESO - 5",
-            "tiempo": 5.0,
+            "obs": "EN PROCESO \n1 - CAROL MONTA\u00d1ES DIAZ\n2 - BRAYAN ORLEY ROCHA RODRIGUEZ\n3 - MARCO GERARDO ROMERO MEJIA",
+            "tiempo": 6.0,
             "planta": 76.0,
             "vinculacion": "FIJO"
         },
@@ -1183,43 +1173,13 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "FACTURACION",
-            "cargo": "PROFESIONAL DE INFORMACION",
-            "estado": "Reclutamiento",
+            "proceso": "GESTION DE LA CALIDAD",
+            "cargo": "PROFESIONAL DE CALIDAD  (INDICADORES)",
+            "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "FINANCIERA",
-            "cargo": "PROFESIONAL FINANCIERO JUNIOR",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO - PASO DIRECTO: JOHAN STEVEN BARRAGAN ZORRO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "GESTION CONTABLE",
-            "cargo": "AUXILIAR DE CONTABILIDAD",
-            "estado": "Entrevista",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO 3",
+            "obs": "DIEGO ANDRES QUINTERO PRADA",
             "tiempo": 1.0,
             "planta": 3.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "GESTION DE LA CALIDAD",
-            "cargo": "PROFESIONAL DE CALIDAD I",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "CONVOCATORIA INTERNA  - PENDIENTE RESPUESTA JEFE",
-            "tiempo": 1.0,
-            "planta": 8.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1233,6 +1193,26 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "GESTI\u00d3N Y DESARROLLO DE PERSONAS",
+            "cargo": "PROFESIONAL DE SELECCI\u00d3N SENIOR",
+            "estado": "Seleccionado",
+            "psicologa": "Carolina",
+            "obs": "KETTY MARIA IGLESIAS JIMENEZ",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "IMAGENES DIAGNOSTICAS",
+            "cargo": "TECNOLOGO RADIOLOGIA CONVENCIONAL SPN",
+            "estado": "Convocatoria Interna",
+            "psicologa": "Carolina",
+            "obs": "INTERNOS - JESUS MINU - LAURA CRUZ",
+            "tiempo": 2.0,
+            "planta": 3.0,
+            "vinculacion": "FIJO"
+        },
+        {
             "proceso": "IMAGENES DIAGNOSTICAS",
             "cargo": "AUXILIAR ADMIN IM\u00c1GENES DIAGN\u00d3STICAS",
             "estado": "Congelado",
@@ -1240,26 +1220,6 @@
             "obs": "CONGELADA",
             "tiempo": 1.0,
             "planta": 7.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "IMAGENES DIAGNOSTICAS",
-            "cargo": "TECNOLOGO RADIOLOGIA CONVENCIONAL SPN",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 0.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "IMAGENES DIAGNOSTICAS",
-            "cargo": "TECNOLOGO TOMOGRAFIA",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "SE ENVIAN - PROMOCI\u00d3N - DANA",
-            "tiempo": 1.0,
-            "planta": 14.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1274,20 +1234,10 @@
         },
         {
             "proceso": "LABORATORIO CLINICO",
-            "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
-            "estado": "Reclutamiento",
-            "psicologa": "Yulieth",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "LABORATORIO CLINICO",
             "cargo": "LIDER ANALITICO",
             "estado": "Seleccionado",
             "psicologa": "Carolina",
-            "obs": "CONVOCATORIA INTERNA EXTERNA",
+            "obs": "JAIR ANDREY RUIZ",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1297,107 +1247,67 @@
             "cargo": "AUXILIAR DE LABORATORIO JUNIOR",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO - 2 -  CLARA GINETH APARICIO MANRIQUE - INILDA MONTOYA",
-            "tiempo": 4.0,
+            "obs": "HEYDY YURANNY HURTADO MESA - TEMPORAL",
+            "tiempo": 2.0,
             "planta": 33.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "LABORATORIO CLINICO",
             "cargo": "BACTERIOLOGO",
-            "estado": "Reclutamiento",
+            "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO 4",
-            "tiempo": 2.0,
+            "obs": "ALBA KATHERINE GARZON VENEGAS",
+            "tiempo": 1.0,
             "planta": 22.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "LABORATORIO CLINICO",
-            "cargo": "BACTERIOLOGO",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "EL VENCIMIENTO DE CONTRATO ES A PARTIR DEL 10 DE MAYO",
-            "tiempo": 1.0,
-            "planta": 0.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "LABORATORIO CLINICO",
-            "cargo": "BACTERIOLOGO SUPERNUMERARIO",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO- 1 - ANYS LINEY ARTEAGA ARTEAGA",
-            "tiempo": 1.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "LABORATORIO CLINICO",
-            "cargo": "BACTERIOLOGO (A) ESPECIAL",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "LM FPP EL 24 DE ABRIL DE 2026",
-            "tiempo": 1.0,
-            "planta": 7.0,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "LABORATORIO CLINICO",
-            "cargo": "BACTERIOLOGO (A) ESPECIAL",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "2026-04-14 00:00:00",
-            "tiempo": 1.0,
-            "planta": 7.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "LOGISTICA Y SUMINISTROS",
-            "cargo": "AUXILIAR ADMINISTRATIVO",
+            "cargo": "PROFESIONAL EN BIOLOGIA MOLECULAR JUNIOR",
             "estado": "Reclutamiento",
             "psicologa": "Carolina",
             "obs": "EN RECLUTAMIENTO",
-            "tiempo": 3.0,
-            "planta": 13.0,
+            "tiempo": 1.0,
+            "planta": 22.0,
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "LOGISTICA Y SUMINISTROS",
-            "cargo": "AUXILIAR FARMACIA LOGISTICO",
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
             "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO 2",
-            "tiempo": 2.0,
-            "planta": 7.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "LOGISTICA Y SUMINISTROS",
-            "cargo": "AUXILIAR FARMACIA LOGISTICO",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 3.0,
-            "planta": 7.0,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "MANTENIMIENTO",
-            "cargo": "COORDINADOR DE MANTENIMIENTO-BIOMEDICO",
-            "estado": "Congelado",
             "psicologa": "Yulieth",
-            "obs": "EN REVISION PARA CAMBIO DE PERFIL",
+            "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LOGISTICA Y SUMINISTROS",
+            "cargo": "AUXILIAR FARMACIA LOGISTICO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "DIANA PAOLA BELTRAN RINCON",
+            "tiempo": 1.0,
+            "planta": 7.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LOGISTICA Y SUMINISTROS",
+            "cargo": "AUXILIAR FARMACIA LOGISTICO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 3.0,
+            "planta": 7.0,
+            "vinculacion": "OBRA O LABOR"
         },
         {
             "proceso": "MANTENIMIENTO",
             "cargo": "AUXILIAR DE MANTENIMIENTO",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO 3 CANDIDATOS",
+            "obs": "INGRESA DYLAN AVILA - JOHAN CASTELLANOS",
             "tiempo": 3.0,
             "planta": 16.0,
             "vinculacion": "FIJO"
@@ -1405,10 +1315,10 @@
         {
             "proceso": "MANTENIMIENTO",
             "cargo": "TECNICO DE MANTENIMIENTO",
-            "estado": "Reclutamiento",
+            "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 2.0,
+            "obs": "EN PROCESO 2",
+            "tiempo": 3.0,
             "planta": 14.0,
             "vinculacion": "FIJO"
         },
@@ -1424,26 +1334,6 @@
         },
         {
             "proceso": "MANTENIMIENTO",
-            "cargo": "INGENIERO BIOMEDICO JUNIOR",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - DINA LUZ SANDOVAL BUITRAGO",
-            "tiempo": 2.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "MANTENIMIENTO",
-            "cargo": "TECNOLOGO  BIOMEDICO",
-            "estado": "Entrevista",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - 3 -",
-            "tiempo": 1.0,
-            "planta": 5.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "MANTENIMIENTO",
             "cargo": "TECNICO DE MANTENIMIENTO -REFRIGERACION Y AIRE ACONDICIONADO",
             "estado": "Congelado",
             "psicologa": "Carolina",
@@ -1453,21 +1343,41 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "ONCOLOGIA",
-            "cargo": "ENFERMERO NAVEGACION",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
+            "proceso": "MANTENIMIENTO",
+            "cargo": "INGENIERO BIOMEDICO JUNIOR",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - EXAMENES MEDICOS",
             "tiempo": 2.0,
-            "planta": 6.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "INGENIERO BIOMEDICO",
+            "estado": "Convocatoria Interna",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - CONVOCATORIA INTERNA",
+            "tiempo": 1.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "TECNOLOGO  BIOMEDICO",
+            "estado": "Entrevista",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 2 EXAMENES MEDICOS",
+            "tiempo": 1.0,
+            "planta": 5.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "ONCOLOGIA",
             "cargo": "AUXILIARES DE NAVEGACION",
-            "estado": "Reclutamiento",
+            "estado": "Entrevista",
             "psicologa": "Susana",
-            "obs": "nan",
+            "obs": "ENTREVISTAS JEFE INMEDIATO - CONVOCATORIA INTERNA",
             "tiempo": 5.0,
             "planta": 5.0,
             "vinculacion": "FIJO"
@@ -1487,27 +1397,17 @@
             "cargo": "COORDINADOR DE PATOLOGIA",
             "estado": "Congelado",
             "psicologa": "Carolina",
-            "obs": "NOMBRAMIENTO DR. FRANKY ROCHA",
+            "obs": "ENTREVISTAS JEFE INMEDIATO",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "PATOLOGIA",
-            "cargo": "AUXILIAR DE PATOLOGIA",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO 1 CANDIDATO",
-            "tiempo": 0.0,
-            "planta": 6.0,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "PATOLOGIA",
             "cargo": "AUXILIAR DE PATOLOGIA-HUBU",
-            "estado": "En proceso",
+            "estado": "Reclutamiento",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO 1 CANDIDATO",
+            "obs": "EN RECLUTAMIENTO",
             "tiempo": 2.0,
             "planta": 6.0,
             "vinculacion": "FIJO"
@@ -1515,9 +1415,9 @@
         {
             "proceso": "PLANEACION",
             "cargo": "PROFESIONAL DE PLANEACION JUNIOR",
-            "estado": "Entrevista",
+            "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
+            "obs": "RUBEN DAVID AMAYA PINILLA",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1526,7 +1426,7 @@
             "proceso": "PLANTA  FISICA",
             "cargo": "PROFESIONAL JUNIOR PLANTA F\u00cdSICA",
             "estado": "Congelado",
-            "psicologa": "Natalia",
+            "psicologa": "Carolina",
             "obs": "CONGELADA",
             "tiempo": 1.0,
             "planta": 4.0,
@@ -1654,22 +1554,22 @@
         },
         {
             "proceso": "REHABILITACION",
-            "cargo": "FISIOTERAPEUTA",
+            "cargo": "TERAPEUTA OCUPACIONAL",
             "estado": "Reclutamiento",
             "psicologa": "Carolina",
             "obs": "EN RECLUTAMIENTO",
-            "tiempo": 2.0,
+            "tiempo": 1.0,
             "planta": 110.75,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "SALUD REPRODUCTIVA Y SEXUAL",
-            "cargo": "GINECOLOGO",
-            "estado": "Congelado",
+            "cargo": "MEDICO GENERAL",
+            "estado": "Seleccionado",
             "psicologa": "Carolina",
-            "obs": "SE CUBRE CON AUMENTO DE HORAS *ORDEN DR. GOMEZ",
-            "tiempo": 1.25,
-            "planta": 20.0,
+            "obs": "MARIANA QUINTANA",
+            "tiempo": 1.0,
+            "planta": 19.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1685,9 +1585,9 @@
         {
             "proceso": "SERVICIO FARMACEUTICO",
             "cargo": "AUXILIAR DE FARMACIA JUNIOR",
-            "estado": "Reclutamiento",
+            "estado": "En proceso",
             "psicologa": "Susana",
-            "obs": "nan",
+            "obs": "EN PROCESO",
             "tiempo": 1.0,
             "planta": 31.0,
             "vinculacion": "OBRA O LABOR"
@@ -1697,19 +1597,9 @@
             "cargo": "AUXILIAR DE FARMACIA JUNIOR",
             "estado": "En proceso",
             "psicologa": "Susana",
-            "obs": "EN PROCESO 4",
-            "tiempo": 4.0,
+            "obs": "EN PROCESO",
+            "tiempo": 10.0,
             "planta": 31.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "SERVICIO FARMACEUTICO",
-            "cargo": "REGENTE DE FARMACIA",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 14.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1724,30 +1614,10 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "SOPORTE TECNICO SERVINTE",
-            "estado": "Reclutamiento",
-            "psicologa": "Lady",
-            "obs": "CONVOCATORIA INTERNA",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "PROGRAMAS ESPECIALES",
-            "cargo": "AUXILIAR ADMINISTRATIVO CLINICA DEL DOLOR",
-            "estado": "En proceso",
-            "psicologa": "Lady",
-            "obs": "SELECCIONADO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "COORDINADOR INTEROPERABILIDAD",
-            "estado": "Reclutamiento",
+            "estado": "Entrevista",
             "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
+            "obs": "PTE ENTREVISTA DE JEFE INMEDIATO",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1755,19 +1625,9 @@
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "OFICIAL DE SEGURIDAD DE LA INFORMACION",
-            "estado": "Entrevista",
+            "estado": "Convocatoria Interna",
             "psicologa": "Carolina",
-            "obs": "PTE CONCEPTO ENTREVISTA DE JEFE INMEDIATO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "PROFESIONAL DE TICS II",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADO SIN REQUERIMIENTO",
+            "obs": "ZULY JOHANA GIRALDO",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1775,18 +1635,58 @@
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "PROFESIONAL DE SISTEMAS JUNIOR",
-            "estado": "Reclutamiento",
+            "estado": "Convocatoria Interna",
             "psicologa": "Carolina",
-            "obs": "nan",
+            "obs": "DAIVER IDROBO",
             "tiempo": 1.0,
             "planta": 5.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL DE SISTEMAS JUNIOR",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN ESPERA DE CONFIRMACION DE CAMBIO DE PERFIL POR NUEVA ESTRUCTURA",
+            "tiempo": 1.0,
+            "planta": 5.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL DE TICS II",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADO SIN REQUERIMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL DE SISTEMAS II - SEG. DE LA INFORMACI\u00d3N",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "JEISSON ERLEY BELTRAN GUZM\u00c1N",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "SOPORTE TECNICO",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "GERMAN ANDRES TORRES SANJUAN",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "PROFESIONAL  INNOVACION Y SALUD DIGITAL",
             "estado": "Congelado",
-            "psicologa": "Natalia",
+            "psicologa": "Carolina",
             "obs": "CONGELADA",
             "tiempo": 1.0,
             "planta": 1.0,
@@ -1804,146 +1704,348 @@
         },
         {
             "proceso": "URGENCIAS",
-            "cargo": "EMERGENCIOLOGO",
+            "cargo": "MEDICO GENERAL",
             "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO",
-            "tiempo": 1.0,
-            "planta": 9.0,
+            "obs": "INGRESAN 2 - PTE ENTREVISTA JEFE 5 - 1 EN VALIDACION",
+            "tiempo": 4.0,
+            "planta": 139.0,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "URGENCIAS",
-            "cargo": "MEDICO GENERAL",
-            "estado": "En proceso",
+            "cargo": "EMERGENCIOLOGO",
+            "estado": "Convocatoria Interna",
             "psicologa": "Carolina",
-            "obs": "EN PROCESO 3 CANDIDATOS",
-            "tiempo": 2.0,
-            "planta": 91.0,
+            "obs": "SEBASTIAN SALVADOR BARRERA",
+            "tiempo": 1.0,
+            "planta": 9.0,
             "vinculacion": "FIJO"
         }
     ],
     "fpp": [
         {
-            "nombre": "VIANETH DAYANNA RANGEL ALBINO",
-            "cargo": "BACTERI\u00d3LOGO (A) ESPECIAL",
-            "proceso": "Laboratorio Cl\u00ednico y Servicio Transfusional",
-            "fpp": "2026-04-25"
-        },
-        {
-            "nombre": "BIBIANA YAMIL MURILLO MARTINEZ",
+            "nombre": "JUDY ALEJANDRA RODRIGUEZ BELLO",
             "cargo": "AUXILIAR DE ENFERMERIA",
             "proceso": "Enfermer\u00eda",
-            "fpp": "2026-04-29"
+            "fpp": "2026-06-03"
         },
         {
-            "nombre": "CLAUDIA NATALI AHUMADA BALLESTEROS",
-            "cargo": "ENFERMERO (A)",
-            "proceso": "Enfermer\u00eda",
-            "fpp": "2026-05-03"
-        },
-        {
-            "nombre": "ANA MARIA OJEDA GONZALEZ",
+            "nombre": "LEIDY PAOLA CRUZ GUZMAN",
             "cargo": "AUXILIAR DE ENFERMERIA",
             "proceso": "Enfermer\u00eda",
-            "fpp": "2026-04-03"
+            "fpp": "2026-06-29"
         },
         {
-            "nombre": "JANNETH BELEN MARTINEZ BOLIVAR",
-            "cargo": "GESTOR DE EXPERIENCIA",
-            "proceso": "Direccionamiento Estrat\u00e9gico",
-            "fpp": "2026-04-20"
-        },
-        {
-            "nombre": "DIANA COSTANZA ESGUERRA CACERES",
-            "cargo": "ENFERMERO (A)",
-            "proceso": "Enfermer\u00eda",
-            "fpp": "2026-03-23"
-        },
-        {
-            "nombre": "DIANA PAOLA ZAMBRANO GONZALEZ",
-            "cargo": "ANFITRI\u00d3N DE SERVICIO",
-            "proceso": "Atenci\u00f3n al Usuario",
-            "fpp": "2026-04-04"
-        },
-        {
-            "nombre": "ANGIE LIZETH GARCIA PERDOMO",
-            "cargo": "ENFERMERO (A)",
-            "proceso": "Enfermer\u00eda",
-            "fpp": "2026-04-28"
-        },
-        {
-            "nombre": "SARA MELISSA FLOREZ HERNANDEZ",
-            "cargo": "MEDICO PROA",
-            "proceso": "Infecciones y Vigilancia Epidemiol\u00f3gica",
-            "fpp": "2026-05-06"
-        },
-        {
-            "nombre": "EDITH LORENA TORRES CORDOBA",
-            "cargo": "ENFERMERO (A)",
-            "proceso": "Enfermer\u00eda",
-            "fpp": "2026-05-05"
-        },
-        {
-            "nombre": "DARGY ROXANNA BAUTISTA SALCEDO",
-            "cargo": "ENFERMERO (A)",
-            "proceso": "Enfermer\u00eda",
-            "fpp": "2026-05-01"
-        },
-        {
-            "nombre": "LUZ ANGELA MAZUERA DORADO",
-            "cargo": "MEDICO PATOLOGO",
-            "proceso": "Patolog\u00eda",
-            "fpp": "2026-05-11"
-        },
-        {
-            "nombre": "KERLY JOJANA TRIANA ROBAYO",
+            "nombre": "MARIA PAULA ROBLES MOSQUERA",
             "cargo": "AUXILIAR DE ENFERMERIA",
             "proceso": "Enfermer\u00eda",
-            "fpp": "2026-04-25"
+            "fpp": "2026-06-20"
         },
         {
-            "nombre": "BLANCA YAZMIN RUBIO CASTILLO",
-            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
-            "proceso": "Servicio Farmac\u00e9utico",
-            "fpp": "2026-06-25"
+            "nombre": "DIANA STEFANY ARIAS LOPEZ",
+            "cargo": "AUXILIAR DE ESTERILIZACION",
+            "proceso": "Esterilizaci\u00f3n",
+            "fpp": "2026-06-07"
+        },
+        {
+            "nombre": "LUISA YULIANA MARTINEZ SANCHEZ",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-06-04"
+        },
+        {
+            "nombre": "LAURA VANESSA RODRIGUEZ HERRERA",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-05-22"
+        },
+        {
+            "nombre": "YENNY MARCELA VELASQUEZ PEDRAZA",
+            "cargo": "TRABAJADOR (A) SOCIAL",
+            "proceso": "Programas Especiales",
+            "fpp": "2026-07-23"
+        },
+        {
+            "nombre": "DIANA MARCELA VIVES TRAVECEDO",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-07-02"
+        },
+        {
+            "nombre": "ERIKA IVONNE GIL MALO",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-07-06"
+        },
+        {
+            "nombre": "LINA MARIA SIATAMA REYES",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-07-17"
         },
         {
             "nombre": "ALEJANDRA DEL PILAR BELE\u00d1O SURMAY",
             "cargo": "INSTRUMENTADOR QUIRURGICO",
             "proceso": "Esterilizaci\u00f3n",
-            "fpp": "2026-06-20"
+            "fpp": "2026-06-30"
         },
         {
-            "nombre": "VALENTINA NARANJO TRUJILLO",
-            "cargo": "INSTRUMENTADOR QUIRURGICO",
-            "proceso": "Esterilizaci\u00f3n",
-            "fpp": "2026-05-05"
+            "nombre": "LAURA DANIELA ARIAS SUAREZ",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "proceso": "Servicio Farmac\u00e9utico",
+            "fpp": "2026-07-01"
+        },
+        {
+            "nombre": "JENIFFER GERALDINE GALINDO SANTIAGO",
+            "cargo": "AUXILIAR  DE CONTABILIDAD",
+            "proceso": "Gesti\u00f3n Contable",
+            "fpp": "2026-07-06"
+        },
+        {
+            "nombre": "JENNY PAOLA LAVERDE CASTILLO",
+            "cargo": "QU\u00cdMICO FARMAC\u00c9UTICO SENIOR",
+            "proceso": "Servicio Farmac\u00e9utico",
+            "fpp": "2026-09-15"
+        },
+        {
+            "nombre": "KAREN ANDREA COMBITA MARTINEZ",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-08-10"
+        },
+        {
+            "nombre": "YENIFER TATIANA SANCHEZ RAMIREZ",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-06-04"
+        },
+        {
+            "nombre": "BLANCA YAZMIN RUBIO CASTILLO",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "proceso": "Servicio Farmac\u00e9utico",
+            "fpp": "2026-06-19"
         },
         {
             "nombre": "LAURA VALENTINA LOPEZ SARMIENTO",
-            "cargo": "QUIMICO FARMACEUTICO JUNIOR",
+            "cargo": "QU\u00cdMICO FARMAC\u00c9UTICO JUNIOR",
             "proceso": "Servicio Farmac\u00e9utico",
             "fpp": "2026-08-09"
+        },
+        {
+            "nombre": "JENNYFFER HERRERA AVILEZ",
+            "cargo": "PROFESIONAL DE SISTEMAS II",
+            "proceso": "Tecnolog\u00eda de la Informaci\u00f3n y las Comunicaciones",
+            "fpp": "2026-09-10"
+        },
+        {
+            "nombre": "ESTEFANY LIZCANO PERILLA",
+            "cargo": "MEDICO GENERAL",
+            "proceso": "Urgencias",
+            "fpp": "2026-08-10"
+        },
+        {
+            "nombre": "TANIA KATERINE MORALES CONTRERAS",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "proceso": "Servicio Farmac\u00e9utico",
+            "fpp": "2026-09-07"
+        },
+        {
+            "nombre": "INGRI CONSTANZA MARTINEZ PORRAS",
+            "cargo": "APRENDIZ AUXILIAR ADMINISTRATIVO",
+            "proceso": "Talento Humano",
+            "fpp": "2026-08-18"
+        },
+        {
+            "nombre": "JENNIFER RODRIGUEZ LONDO\u00d1O",
+            "cargo": "PROFESIONAL ONCOLOGO EN EDUCACION",
+            "proceso": "Atenci\u00f3n Ambulatoria",
+            "fpp": "2026-07-20"
+        },
+        {
+            "nombre": "LINA MARIA ORTIZ SIERRA",
+            "cargo": "GESTOR CLINICO",
+            "proceso": "Infecciones y Vigilancia Epidemiol\u00f3gica",
+            "fpp": "2026-08-03"
+        },
+        {
+            "nombre": "LEIDY KATHERINE ROJAS HERRERA",
+            "cargo": "TERAPEUTA OCUPACIONAL",
+            "proceso": "Rehabilitaci\u00f3n",
+            "fpp": "2026-08-30"
+        },
+        {
+            "nombre": "ANGIE XIMENA SALINAS TORRES",
+            "cargo": "FISIOTERAPEUTA",
+            "proceso": "Rehabilitaci\u00f3n",
+            "fpp": "2026-07-28"
+        },
+        {
+            "nombre": "CLAUDIA ISMENIA SILVA GARCES",
+            "cargo": "FACTURADOR",
+            "proceso": "Facturaci\u00f3n",
+            "fpp": "2026-08-10"
+        },
+        {
+            "nombre": "DIANA MARCELA ROBAYO DIAZ",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-08-18"
+        },
+        {
+            "nombre": "YENI NATALIA QUITIAN LUENGAS",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-09-19"
+        },
+        {
+            "nombre": "HEIDY TATIANA CHAPARRO MACHADO",
+            "cargo": "AUXILIAR DE COMPRAS Y CONTRATACION",
+            "proceso": "Jur\u00eddica",
+            "fpp": "2026-09-03"
+        },
+        {
+            "nombre": "JENSIE NATALIA AHUMADA GARAY",
+            "cargo": "ANALISTA DE NOMINA",
+            "proceso": "Talento Humano",
+            "fpp": "2026-06-15"
+        },
+        {
+            "nombre": "SHAILIN YERALDINE FAJARDO MAHECHA",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-08-30"
+        },
+        {
+            "nombre": "BIVIANA MARCELA ARCINIEGAS MENESES",
+            "cargo": "GESTOR DE EXPERIENCIA",
+            "proceso": "Direccionamiento Estrat\u00e9gico",
+            "fpp": "2026-10-06"
+        },
+        {
+            "nombre": "YENNI ADRIANA GARAY ROMERO",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-08-01"
+        },
+        {
+            "nombre": "ALISSON DAYANA REYES ALARCON",
+            "cargo": "AUXILIAR DE FARMACIA JUNIOR",
+            "proceso": "Servicio Farmac\u00e9utico",
+            "fpp": "2026-08-16"
+        },
+        {
+            "nombre": "STEFANY ALEJANDRA CORTES RINCON",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-09-23"
+        },
+        {
+            "nombre": "ERIKA TATIANA PEREZ ZAMBRANO",
+            "cargo": "LIDER DE CONTROL DE CALIDAD ANALITICA",
+            "proceso": "Laboratorio Cl\u00ednico y Servicio Transfusional",
+            "fpp": "2026-08-13"
+        },
+        {
+            "nombre": "LADY JOHANA TRISTANCHO MARTINEZ",
+            "cargo": "CIRUJANO PLASTICO",
+            "proceso": "Cl\u00ednicas Quir\u00fargicas",
+            "fpp": "2026-06-08"
+        },
+        {
+            "nombre": "CLAUDIA PATRICIA PALMA VILLANUEVA",
+            "cargo": "COORDINADOR DE ESTUDIOS",
+            "proceso": "Investigaciones",
+            "fpp": "2026-07-08"
+        },
+        {
+            "nombre": "ANDREA KATHERINE RINCON RODRIGUEZ",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-11-09"
+        },
+        {
+            "nombre": "KAROLAINS STEPHANY MARTHAN BERBEO",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-11-20"
+        },
+        {
+            "nombre": "NATASHIA MAX SALAS",
+            "cargo": "MEDICO GENERAL",
+            "proceso": "Urgencias",
+            "fpp": "2026-11-21"
+        },
+        {
+            "nombre": "NICOL MANRIQUE VEGA",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-08-25"
+        },
+        {
+            "nombre": "NICOLL DAYANA CARDENAS GOMEZ",
+            "cargo": "AUXILIAR ADMINISTRATIVO (A)",
+            "proceso": "Oncolog\u00eda",
+            "fpp": "2026-09-10"
+        },
+        {
+            "nombre": "YAKELIN ISABEL PE\u00d1A CAMARGO",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-11-10"
+        },
+        {
+            "nombre": "JENIFFER CATHERINE URIBE GARCIA",
+            "cargo": "ENFERMERO (A)",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-10-05"
+        },
+        {
+            "nombre": "STHEFANIE PEREZ LOPEZ",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-09-21"
+        },
+        {
+            "nombre": "LINA PAOLA ARIZA GONZALEZ",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-12-10"
+        },
+        {
+            "nombre": "YECENIA RUIDIAZ CAMARGO",
+            "cargo": "AUXILIAR DE ENFERMERIA",
+            "proceso": "Enfermer\u00eda",
+            "fpp": "2026-11-06"
+        },
+        {
+            "nombre": "MARTHA LILIANA GARCIA YAYA",
+            "cargo": "MEDICO GENERAL",
+            "proceso": "Medicos Hospitalarios",
+            "fpp": "2026-09-13"
+        },
+        {
+            "nombre": "DIANA MARCELA MANRIQUE CUERVO",
+            "cargo": "APRENDIZ AUXILIAR ADMINISTRATIVO",
+            "proceso": "Gesti\u00f3n y Desarrollo de Personas",
+            "fpp": "2026-11-30"
         }
     ],
     "stats": {
         "estados": {
             "names": [
-                "Reclutamiento",
-                "Entrevista",
                 "En proceso",
-                "En revisi\u00f3n",
+                "Seleccionado",
+                "Reclutamiento",
                 "Convocatoria Interna",
-                "Seleccionado"
+                "Entrevista"
             ],
             "counts": [
-                41.0,
-                9.0,
-                92.0,
-                1.0,
-                1.0,
-                1.0
+                117.0,
+                9.5,
+                15.0,
+                7.0,
+                7.0
             ]
         }
     }
