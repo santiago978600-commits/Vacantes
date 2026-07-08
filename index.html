@@ -655,14 +655,14 @@
         // Datos que recibirá desde el script de Python (Injectados via Placeholder)
         // {{DATA_JSON}}
         let appData = {
-    "lastUpdate": "2026-07-08 15:58:10",
+    "lastUpdate": "2026-07-08 17:21:30",
     "aiInsight": "Error en an\u00e1lisis AI: 504 Deadline expired before operation could complete.",
     "kpisGerenciales": {
-        "indiceCongelamiento": 28.7,
-        "volumenActivo": 163.0,
-        "capacidadTotal": 228.75,
+        "indiceCongelamiento": 28.1,
+        "volumenActivo": 168.0,
+        "capacidadTotal": 233.75,
         "vacantesCongeladas": 65.75,
-        "eficienciaGeneral": 68.1,
+        "eficienciaGeneral": 69.0,
         "funnel": {
             "labels": [
                 "Reclutamiento",
@@ -672,7 +672,7 @@
             "data": [
                 27.0,
                 25.0,
-                111.0
+                116.0
             ]
         },
         "distribucionProcesos": {
@@ -684,7 +684,7 @@
                 "FACTURACION"
             ],
             "counts": [
-                60.0,
+                65.0,
                 26.0,
                 15.0,
                 12.0,
@@ -692,12 +692,12 @@
             ]
         },
         "tendencia": [
-            16,
-            41,
-            65,
-            98,
-            139,
-            163
+            17,
+            42,
+            67,
+            101,
+            143,
+            168
         ]
     },
     "kpisAprendices": {
@@ -705,7 +705,7 @@
         "validos": 175,
         "meta": 166,
         "riesgoMulta": 1,
-        "insight": "Error IA: 504 Deadline expired before operation could complete.",
+        "insight": "Error IA: Timeout of 60.0s exceeded, last exception: 503 This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.",
         "forecast": [
             {
                 "fecha": "2026-07-10",
@@ -774,16 +774,6 @@
         },
         {
             "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR DE ADMISIONES",
-            "estado": "Congelado",
-            "psicologa": "Lady",
-            "obs": "CONGELADO",
-            "tiempo": 2.0,
-            "planta": 27.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CENTRAL DE MOVILIDAD",
             "cargo": "AUXILIAR CENTRAL DE MOVILIDAD (AUTORIZACIONES)",
             "estado": "Congelado",
             "psicologa": "Lady",
@@ -800,6 +790,26 @@
             "obs": "EN PROCESO - EXAMENES MEDICOS",
             "tiempo": 2.0,
             "planta": 42.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR DE ADMISIONES",
+            "estado": "Congelado",
+            "psicologa": "Lady",
+            "obs": "CONGELADO",
+            "tiempo": 2.0,
+            "planta": 27.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CLINICAS MEDICAS",
+            "cargo": "CARDIOLOGO FALLA CARDIACA",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 2.0,
             "vinculacion": "FIJO"
         },
         {
@@ -824,22 +834,22 @@
         },
         {
             "proceso": "CLINICAS MEDICAS",
-            "cargo": "NEUROLOGO",
+            "cargo": "INTERNISTA",
             "estado": "Congelado",
             "psicologa": "Carolina",
-            "obs": "VINCULACION POR OPS IVAN PRADILLA",
+            "obs": "EN RECLUTAMIENTO",
             "tiempo": 0.5,
-            "planta": 8.5,
+            "planta": 40.5,
             "vinculacion": "FIJO"
         },
         {
             "proceso": "CLINICAS MEDICAS",
-            "cargo": "CARDIOLOGO FALLA CARDIACA",
-            "estado": "Congelado",
+            "cargo": "INTERNISTA",
+            "estado": "En proceso",
             "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 2.0,
+            "obs": "EN PROCESO 1 ESPECIALISTA",
+            "tiempo": 2.0,
+            "planta": 39.25,
             "vinculacion": "FIJO"
         },
         {
@@ -864,22 +874,12 @@
         },
         {
             "proceso": "CLINICAS MEDICAS",
-            "cargo": "INTERNISTA",
+            "cargo": "NEUROLOGO",
             "estado": "Congelado",
             "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
+            "obs": "VINCULACION POR OPS IVAN PRADILLA",
             "tiempo": 0.5,
-            "planta": 40.5,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CLINICAS MEDICAS",
-            "cargo": "INTERNISTA",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "EN PROCESO 1 ESPECIALISTA",
-            "tiempo": 2.0,
-            "planta": 39.25,
+            "planta": 8.5,
             "vinculacion": "FIJO"
         },
         {
@@ -1014,22 +1014,22 @@
         },
         {
             "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
-            "cargo": "GESTOR DE EXPERIENCIA",
-            "estado": "En proceso",
-            "psicologa": "Lady",
-            "obs": "FINALIZADO TEMPORAL - YESICA ANDREA LONDO\u00d1O LINARES",
-            "tiempo": 1.0,
-            "planta": 27.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
             "cargo": "AUXILIAR DE ENFERMERIA SERVICIOS PARTICULARES",
             "estado": "Reclutamiento",
             "psicologa": "Susana",
             "obs": "ENTREVISTAS JEFE INMEDIATO - CONVOCATORIA INTERNA",
             "tiempo": 2.0,
             "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "DIRECCIONAMIENTO ESTRATEGICO",
+            "cargo": "GESTOR DE EXPERIENCIA",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "FINALIZADO TEMPORAL - YESICA ANDREA LONDO\u00d1O LINARES",
+            "tiempo": 1.0,
+            "planta": 27.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1048,7 +1048,7 @@
             "estado": "En proceso",
             "psicologa": "Susana",
             "obs": "EN PROCESO - 37",
-            "tiempo": 35.0,
+            "tiempo": 39.0,
             "planta": 1048.5,
             "vinculacion": "FIJO"
         },
@@ -1060,26 +1060,6 @@
             "obs": "EN PROCESO 2",
             "tiempo": 2.0,
             "planta": 1048.5,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "ENFERMERO",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - 12",
-            "tiempo": 17.0,
-            "planta": 446.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "ENFERMERIA",
-            "cargo": "ENFERMERO",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO 1",
-            "tiempo": 2.0,
-            "planta": 446.0,
             "vinculacion": "OBRA O LABOR"
         },
         {
@@ -1103,6 +1083,26 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - 12",
+            "tiempo": 18.0,
+            "planta": 446.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ENFERMERIA",
+            "cargo": "ENFERMERO",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO 1",
+            "tiempo": 2.0,
+            "planta": 446.0,
+            "vinculacion": "OBRA O LABOR"
+        },
+        {
             "proceso": "ESTERILIZACION",
             "cargo": "INSTRUMENTADOR QUIRURGICO",
             "estado": "En proceso",
@@ -1111,16 +1111,6 @@
             "tiempo": 1.0,
             "planta": 61.0,
             "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "FACTURACION",
-            "cargo": "PROFESIONAL DE INFORMACION",
-            "estado": "En proceso",
-            "psicologa": "Lady",
-            "obs": "1-  ALEXANDER BENAVIDES TELLO -  PENDIENTE FINALIZACION COSINTE",
-            "tiempo": 1.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
         },
         {
             "proceso": "FACTURACION",
@@ -1145,6 +1135,16 @@
         {
             "proceso": "FACTURACION",
             "cargo": "PROFESIONAL DE INFORMACION",
+            "estado": "En proceso",
+            "psicologa": "Lady",
+            "obs": "1-  ALEXANDER BENAVIDES TELLO -  PENDIENTE FINALIZACION COSINTE",
+            "tiempo": 1.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "FACTURACION",
+            "cargo": "PROFESIONAL DE INFORMACION",
             "estado": "Congelado",
             "psicologa": "Natalia",
             "obs": "CONGELADA",
@@ -1164,22 +1164,22 @@
         },
         {
             "proceso": "IMAGENES DIAGNOSTICAS",
-            "cargo": "TECNOLOGO RADIOLOGIA CONVENCIONAL SPN",
-            "estado": "Convocatoria Interna",
-            "psicologa": "Carolina",
-            "obs": "JESUS MINU - LAURA CRUZ PTE VACACIONES EN CURSO",
-            "tiempo": 2.0,
-            "planta": 3.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "IMAGENES DIAGNOSTICAS",
             "cargo": "AUXILIAR ADMIN IM\u00c1GENES DIAGN\u00d3STICAS",
             "estado": "Congelado",
             "psicologa": "Natalia",
             "obs": "CONGELADA",
             "tiempo": 1.0,
             "planta": 7.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "IMAGENES DIAGNOSTICAS",
+            "cargo": "TECNOLOGO RADIOLOGIA CONVENCIONAL SPN",
+            "estado": "Convocatoria Interna",
+            "psicologa": "Carolina",
+            "obs": "JESUS MINU - LAURA CRUZ PTE VACACIONES EN CURSO",
+            "tiempo": 2.0,
+            "planta": 3.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1204,22 +1204,22 @@
         },
         {
             "proceso": "LABORATORIO CLINICO",
-            "cargo": "PROFESIONAL EN BIOLOGIA MOLECULAR JUNIOR",
-            "estado": "Reclutamiento",
-            "psicologa": "Jhon",
-            "obs": "EXAMENES",
-            "tiempo": 1.0,
-            "planta": 22.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "LABORATORIO CLINICO",
             "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
             "estado": "Reclutamiento",
             "psicologa": "Yulieth",
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "PROFESIONAL EN BIOLOGIA MOLECULAR JUNIOR",
+            "estado": "Reclutamiento",
+            "psicologa": "Jhon",
+            "obs": "EXAMENES",
+            "tiempo": 1.0,
+            "planta": 22.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1241,6 +1241,26 @@
             "tiempo": 3.0,
             "planta": 7.0,
             "vinculacion": "OBRA O LABOR"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "INGENIERO BIOMEDICO",
+            "estado": "Convocatoria Interna",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - CONVOCATORIA INTERNA",
+            "tiempo": 1.0,
+            "planta": 4.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "MANTENIMIENTO",
+            "cargo": "INGENIERO BIOMEDICO JUNIOR",
+            "estado": "En proceso",
+            "psicologa": "Susana",
+            "obs": "EN PROCESO - EXAMENES MEDICOS",
+            "tiempo": 2.0,
+            "planta": 2.0,
+            "vinculacion": "FIJO"
         },
         {
             "proceso": "MANTENIMIENTO",
@@ -1274,26 +1294,6 @@
         },
         {
             "proceso": "MANTENIMIENTO",
-            "cargo": "INGENIERO BIOMEDICO JUNIOR",
-            "estado": "En proceso",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - EXAMENES MEDICOS",
-            "tiempo": 2.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "MANTENIMIENTO",
-            "cargo": "INGENIERO BIOMEDICO",
-            "estado": "Convocatoria Interna",
-            "psicologa": "Susana",
-            "obs": "EN PROCESO - CONVOCATORIA INTERNA",
-            "tiempo": 1.0,
-            "planta": 4.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "MANTENIMIENTO",
             "cargo": "TECNOLOGO  BIOMEDICO",
             "estado": "Entrevista",
             "psicologa": "Susana",
@@ -1314,12 +1314,12 @@
         },
         {
             "proceso": "PATOLOGIA",
-            "cargo": "ESPECIALISTA EN GENETICA",
-            "estado": "Congelado",
+            "cargo": "AUXILIAR DE PATOLOGIA",
+            "estado": "Reclutamiento",
             "psicologa": "Carolina",
-            "obs": "CONGELADA",
-            "tiempo": 1.0,
-            "planta": 1.0,
+            "obs": "SE ENVIARON 2 APRENDICES AUXILIARES DE APOYO",
+            "tiempo": 2.0,
+            "planta": 6.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1334,12 +1334,12 @@
         },
         {
             "proceso": "PATOLOGIA",
-            "cargo": "AUXILIAR DE PATOLOGIA",
-            "estado": "Reclutamiento",
+            "cargo": "ESPECIALISTA EN GENETICA",
+            "estado": "Congelado",
             "psicologa": "Carolina",
-            "obs": "SE ENVIARON 2 APRENDICES AUXILIARES DE APOYO",
-            "tiempo": 2.0,
-            "planta": 6.0,
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1534,6 +1534,66 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "CIBERSEGURIDAD Y PROTECCI\u00d3N DE DATOS",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "VALORADA ZULY GIRALDO, NOMBRAMIENTO E",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "GESTOR DATA LAKE",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "GESTOR DE AUTOMATIZACI\u00d3N, SISTEMATIZACI\u00d3N Y SOLUCIONES EXTERNAS",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "GESTOR DE IMPLEMENTACI\u00d3N ADOPCI\u00d3N Y EXPERIENCIA",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "GESTOR DE INFORMACI\u00d3N IA",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "EN REVISI\u00d3N HV CON L\u00cdDER",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "GESTOR DE INFRAESTRUCTURA TECNOLOG\u00cdCA, REDES Y CONECTIVIDAD",
+            "estado": "Seleccionado",
+            "psicologa": "Carolina",
+            "obs": "NOMBRAMIENTO JULIO EN KEMER",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "GESTOR INTEROPERABILIDAD",
             "estado": "Entrevista",
             "psicologa": "Carolina",
@@ -1544,10 +1604,60 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "GESTOR SOLUCIONES EXISTENTES",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "GOBIERNO Y ESTRATEGIA DE DATOS",
+            "estado": "Seleccionado",
+            "psicologa": "Carolina",
+            "obs": "JHON LE\u00d3N",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "JEFE DE TECNOLOG\u00cdAS DE LA INFO Y COM",
+            "estado": "Reclutamiento",
+            "psicologa": "Yulieth",
+            "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "OFICIAL DE SEGURIDAD DE LA INFORMACION",
             "estado": "Convocatoria Interna",
             "psicologa": "Carolina",
             "obs": "ZULY JOHANA GIRALDO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL  INNOVACION Y SALUD DIGITAL",
+            "estado": "Congelado",
+            "psicologa": "Carolina",
+            "obs": "CONGELADA",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL DE SISTEMAS II - SEG. DE LA INFORMACI\u00d3N",
+            "estado": "En proceso",
+            "psicologa": "Carolina",
+            "obs": "JEISSON ERLEY BELTRAN GUZM\u00c1N",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1584,86 +1694,6 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "PROFESIONAL DE SISTEMAS II - SEG. DE LA INFORMACI\u00d3N",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "JEISSON ERLEY BELTRAN GUZM\u00c1N",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "SOPORTE TECNICO",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "PROFESIONAL  INNOVACION Y SALUD DIGITAL",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "CONGELADA",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "JEFE DE TECNOLOG\u00cdAS DE LA INFO Y COM",
-            "estado": "Reclutamiento",
-            "psicologa": "Yulieth",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "GESTOR DATA LAKE",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "nan",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "GESTOR DE AUTOMATIZACI\u00d3N, SISTEMATIZACI\u00d3N Y SOLUCIONES EXTERNAS",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "nan",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "GESTOR DE INFORMACI\u00d3N IA",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "EN REVISI\u00d3N HV CON L\u00cdDER",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "GESTOR DE IMPLEMENTACI\u00d3N ADOPCI\u00d3N Y EXPERIENCIA",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "nan",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "PROYECT MANAGER",
             "estado": "En proceso",
             "psicologa": "Carolina",
@@ -1674,40 +1704,10 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "GESTOR DE INFRAESTRUCTURA TECNOLOG\u00cdCA, REDES Y CONECTIVIDAD",
-            "estado": "Seleccionado",
+            "cargo": "SOPORTE TECNICO",
+            "estado": "Reclutamiento",
             "psicologa": "Carolina",
-            "obs": "NOMBRAMIENTO JULIO EN KEMER",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "CIBERSEGURIDAD Y PROTECCI\u00d3N DE DATOS",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "VALORADA ZULY GIRALDO, NOMBRAMIENTO E",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "GESTOR SOLUCIONES EXISTENTES",
-            "estado": "En proceso",
-            "psicologa": "Carolina",
-            "obs": "nan",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "GOBIERNO Y ESTRATEGIA DE DATOS",
-            "estado": "Seleccionado",
-            "psicologa": "Carolina",
-            "obs": "JHON LE\u00d3N",
+            "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -2039,7 +2039,7 @@
                 "Entrevista"
             ],
             "counts": [
-                108.0,
+                113.0,
                 3.0,
                 21.0,
                 6.0,
