@@ -655,14 +655,14 @@
         // Datos que recibirá desde el script de Python (Injectados via Placeholder)
         // {{DATA_JSON}}
         let appData = {
-    "lastUpdate": "2026-07-27 16:53:12",
-    "aiInsight": "**Insight Ejecutivo:**   Riesgo cr\u00edtico: La alta concentraci\u00f3n masiva en Enfermer\u00eda (+37 plazas) y cuellos de botella administrativos (aval GDP y definici\u00f3n de perfiles) amenazan la operaci\u00f3n cl\u00ednica. Priorizar aprobaciones internas y agilizar entrevistas de jefatura de inmediato.",
+    "lastUpdate": "2026-07-27 18:18:00",
+    "aiInsight": "**Insight Ejecutivo:**  Riesgo cr\u00edtico: Cuello de botella en la validaci\u00f3n de l\u00edderes (BI estancado desde junio) y alta concentraci\u00f3n asistencial activa (37+ en enfermer\u00eda). Recomendaci\u00f3n: Definir SLA de 48h para feedback de jefes y estabilizar la operaci\u00f3n m\u00e9dica.",
     "kpisGerenciales": {
-        "indiceCongelamiento": 29.9,
-        "volumenActivo": 154.0,
-        "capacidadTotal": 219.75,
+        "indiceCongelamiento": 29.4,
+        "volumenActivo": 158.0,
+        "capacidadTotal": 223.75,
         "vacantesCongeladas": 65.75,
-        "eficienciaGeneral": 79.2,
+        "eficienciaGeneral": 77.8,
         "funnel": {
             "labels": [
                 "Reclutamiento",
@@ -670,9 +670,9 @@
                 "Selecci\u00f3n"
             ],
             "data": [
-                24.0,
+                27.0,
                 8.0,
-                122.0
+                123.0
             ]
         },
         "distribucionProcesos": {
@@ -685,19 +685,19 @@
             ],
             "counts": [
                 65.0,
-                19.0,
+                21.0,
                 12.0,
                 12.0,
                 9.0
             ]
         },
         "tendencia": [
-            15,
-            38,
-            62,
-            92,
-            131,
-            154
+            16,
+            40,
+            63,
+            95,
+            134,
+            158
         ]
     },
     "kpisAprendices": {
@@ -705,19 +705,19 @@
         "validos": 168,
         "meta": 166,
         "riesgoMulta": 1,
-        "insight": "Estrategia de reemplazo anticipado en los viernes permitidos para mitigar vencimientos y sostener el cumplimiento por encima de 166.",
+        "insight": "Estrategia alineada al calendario h\u00e1bil manteniendo el piso de 166 cupos y aprovechando el colch\u00f3n inicial de 2 contratos.",
         "forecast": [
             {
                 "fecha": "2026-07-03",
-                "cantidad": 3
+                "cantidad": 0
             },
             {
                 "fecha": "2026-07-10",
-                "cantidad": 3
+                "cantidad": 0
             },
             {
                 "fecha": "2026-07-17",
-                "cantidad": 3
+                "cantidad": 7
             },
             {
                 "fecha": "2026-08-07",
@@ -778,7 +778,17 @@
         },
         {
             "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD (AUTORIZACIONES)",
+            "cargo": "AUXILIAR DE ADMISIONES",
+            "estado": "Congelado",
+            "psicologa": "Lady",
+            "obs": "CONGELADO",
+            "tiempo": 2.0,
+            "planta": 27.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "CENTRAL DE MOVILIDAD",
+            "cargo": "AUXILIAR DE CENTRAL DE MOVILIDAD (AUTORIZACIONES)",
             "estado": "Congelado",
             "psicologa": "Lady",
             "obs": "FINALIZADO - ZULLY JULIETH AVILA PEREA",
@@ -788,22 +798,12 @@
         },
         {
             "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR CENTRAL DE MOVILIDAD -REFERENCIA",
+            "cargo": "AUXILIAR DE CENTRAL DE MOVILIDAD -REFERENCIA",
             "estado": "Reclutamiento",
             "psicologa": "Susana",
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 42.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CENTRAL DE MOVILIDAD",
-            "cargo": "AUXILIAR DE ADMISIONES",
-            "estado": "Congelado",
-            "psicologa": "Lady",
-            "obs": "CONGELADO",
-            "tiempo": 2.0,
-            "planta": 27.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1008,6 +1008,16 @@
         },
         {
             "proceso": "DIRECCI\u00d3N TECNICA",
+            "cargo": "ENFERMERO MODELO DE ATENCI\u00d3N",
+            "estado": "Convocatoria Interna",
+            "psicologa": "Susana",
+            "obs": "SE CIERRA 27 DE JULIO DEL 2026",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "DIRECCI\u00d3N TECNICA",
             "cargo": "PROFESIONAL JUNIOR DE DESARROLLO BI",
             "estado": "Reclutamiento",
             "psicologa": "Carolina",
@@ -1088,16 +1098,6 @@
         },
         {
             "proceso": "ESTERILIZACION",
-            "cargo": "INSTRUMENTADOR QUIRURGICO",
-            "estado": "Reclutamiento",
-            "psicologa": "Carolina",
-            "obs": "PTE AVAL GDP PARA INGRESO",
-            "tiempo": 1.0,
-            "planta": 61.0,
-            "vinculacion": "OBRA O LABOR"
-        },
-        {
-            "proceso": "ESTERILIZACION",
             "cargo": "AUXILIAR DE ESTERILIZACI\u00d3N",
             "estado": "En proceso",
             "psicologa": "Nan",
@@ -1105,6 +1105,16 @@
             "tiempo": 1.0,
             "planta": 0.0,
             "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "ESTERILIZACION",
+            "cargo": "INSTRUMENTADOR QUIRURGICO",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "PTE AVAL GDP PARA INGRESO",
+            "tiempo": 1.0,
+            "planta": 61.0,
+            "vinculacion": "OBRA O LABOR"
         },
         {
             "proceso": "FACTURACION",
@@ -1208,10 +1218,30 @@
         },
         {
             "proceso": "LABORATORIO CLINICO",
-            "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
+            "cargo": "BACTERIOLOGO",
             "estado": "Reclutamiento",
+            "psicologa": "Jhon",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 0.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "JEFE DE LABORATORIO CLINICO Y SERV PRETRANSFUSIONAL",
+            "estado": "En proceso",
             "psicologa": "Yulieth",
             "obs": "EN RECLUTAMIENTO",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "LIDER ANALITICO",
+            "estado": "Reclutamiento",
+            "psicologa": "Jhon",
+            "obs": "nan",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1453,7 +1483,7 @@
             "psicologa": "Jhon",
             "obs": "EN PROCESO 3",
             "tiempo": 1.0,
-            "planta": 0.0,
+            "planta": 110.75,
             "vinculacion": "FIJO"
         },
         {
@@ -1463,7 +1493,7 @@
             "psicologa": "Jhon",
             "obs": "EN PROCESO 1",
             "tiempo": 1.0,
-            "planta": 110.75,
+            "planta": 5.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1504,16 +1534,6 @@
             "obs": "nan",
             "tiempo": 2.0,
             "planta": 4.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "PROFESIONAL PROTECCI\u00d3N DE DATOS II",
-            "estado": "Entrevista",
-            "psicologa": "Ingrid",
-            "obs": "ENTREVISTAS SELECCION 24/7/2026",
-            "tiempo": 1.0,
-            "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1578,10 +1598,10 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "PROFESIONAL DE SISTEMAS II",
-            "estado": "Reclutamiento",
+            "cargo": "PROFESIONAL DE DESARROLLO I",
+            "estado": "En revisi\u00f3n",
             "psicologa": "Ingrid",
-            "obs": "PRESCRENNING 8",
+            "obs": "ENTREVISTA JEFE DE ACUERDO A PRUEBA TECNICA",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1598,10 +1618,10 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
-            "cargo": "PROFESIONAL DE DESARROLLO I",
-            "estado": "En revisi\u00f3n",
+            "cargo": "PROFESIONAL DE SISTEMAS II",
+            "estado": "Reclutamiento",
             "psicologa": "Ingrid",
-            "obs": "ENTREVISTA JEFE DE ACUERDO A PRUEBA TECNICA",
+            "obs": "PRESCRENNING 8",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1638,6 +1658,16 @@
         },
         {
             "proceso": "TECNOLOGIA DE LA INFORMACION",
+            "cargo": "PROFESIONAL PROTECCI\u00d3N DE DATOS II",
+            "estado": "Entrevista",
+            "psicologa": "Ingrid",
+            "obs": "ENTREVISTAS SELECCION 24/7/2026",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "TECNOLOGIA DE LA INFORMACION",
             "cargo": "PROJECT MANAGER",
             "estado": "En proceso",
             "psicologa": "Ingrid",
@@ -1652,16 +1682,6 @@
             "estado": "Reclutamiento",
             "psicologa": "Ingrid",
             "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 1.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "TENICA",
-            "cargo": "ENFERMERO MODELO DE ATENCI\u00d3N",
-            "estado": "Convocatoria Interna",
-            "psicologa": "Susana",
-            "obs": "SE CIERRA 27 DE JULIO DEL 2026",
             "tiempo": 1.0,
             "planta": 1.0,
             "vinculacion": "FIJO"
@@ -1684,6 +1704,16 @@
             "obs": "EN PROCESO 8 CANDIDATOS - PTE ENTREVISTA DE 2 CANDIDATOS ENVIADOS",
             "tiempo": 10.0,
             "planta": 139.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "URGENCIAS",
+            "cargo": "MEDICO GENERAL HUBU",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 2.0,
+            "planta": 0.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1999,16 +2029,16 @@
                 "En proceso",
                 "Reclutamiento",
                 "Entrevista",
-                "Seleccionado",
                 "Convocatoria Interna",
+                "Seleccionado",
                 "En revisi\u00f3n"
             ],
             "counts": [
-                111.0,
-                21.0,
+                112.0,
+                24.0,
                 4.0,
-                11.0,
                 3.0,
+                11.0,
                 4.0
             ]
         }
