@@ -655,14 +655,14 @@
         // Datos que recibirá desde el script de Python (Injectados via Placeholder)
         // {{DATA_JSON}}
         let appData = {
-    "lastUpdate": "2026-07-27 20:12:52",
-    "aiInsight": "**Insight Ejecutivo:** Riesgo operativo: El \u00e1rea asistencial (Enfermer\u00eda) satura la selecci\u00f3n con >35 vacantes. Se detecta cuello de botella en el feedback de jefaturas y ajuste de perfiles. Recomendaci\u00f3n: Priorizar asignaci\u00f3n asistencial y exigir SLA de 48h a l\u00edderes.",
+    "lastUpdate": "2026-07-27 21:56:11",
+    "aiInsight": "**Insight Ejecutivo:**  Riesgo operativo cr\u00edtico: alta concentraci\u00f3n de vacantes asistenciales (37 candidatos de Enfermer\u00eda represados en proceso) y demoras en validaci\u00f3n m\u00e9dica. Recomiendo un plan de choque urgente con los l\u00edderes cl\u00ednicos para destrabar entrevistas y cierres.",
     "kpisGerenciales": {
-        "indiceCongelamiento": 29.4,
-        "volumenActivo": 158.0,
-        "capacidadTotal": 223.75,
-        "vacantesCongeladas": 65.75,
-        "eficienciaGeneral": 77.8,
+        "indiceCongelamiento": 27.3,
+        "volumenActivo": 167.0,
+        "capacidadTotal": 229.75,
+        "vacantesCongeladas": 62.75,
+        "eficienciaGeneral": 73.7,
         "funnel": {
             "labels": [
                 "Reclutamiento",
@@ -670,7 +670,7 @@
                 "Selecci\u00f3n"
             ],
             "data": [
-                27.0,
+                36.0,
                 8.0,
                 123.0
             ]
@@ -692,12 +692,12 @@
             ]
         },
         "tendencia": [
-            16,
-            40,
-            63,
-            95,
-            134,
-            158
+            17,
+            42,
+            67,
+            100,
+            142,
+            167
         ]
     },
     "kpisAprendices": {
@@ -705,19 +705,11 @@
         "validos": 168,
         "meta": 166,
         "riesgoMulta": 1,
-        "insight": "Plan de contrataci\u00f3n anticipada en ventanas permitidas para cubrir 29 vencimientos y mantener el cupo m\u00ednimo de 166.",
+        "insight": "Se requieren 27 contrataciones estrat\u00e9gicas en 7 fechas clave para amortiguar vencimientos y mantener el cupo siempre en o sobre 166.",
         "forecast": [
             {
-                "fecha": "2026-07-03",
-                "cantidad": 2
-            },
-            {
-                "fecha": "2026-07-10",
-                "cantidad": 2
-            },
-            {
                 "fecha": "2026-07-17",
-                "cantidad": 3
+                "cantidad": 7
             },
             {
                 "fecha": "2026-08-07",
@@ -804,16 +796,6 @@
             "obs": "EN RECLUTAMIENTO",
             "tiempo": 1.0,
             "planta": 42.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "CLINICAS MEDICAS",
-            "cargo": "CARDIOLOGO FALLA CARDIACA",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "EN RECLUTAMIENTO",
-            "tiempo": 1.0,
-            "planta": 2.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1147,16 +1129,6 @@
             "vinculacion": "FIJO"
         },
         {
-            "proceso": "FACTURACION",
-            "cargo": "PROFESIONAL DE INFORMACION",
-            "estado": "Congelado",
-            "psicologa": "Natalia",
-            "obs": "CONGELADA",
-            "tiempo": 1.0,
-            "planta": 2.0,
-            "vinculacion": "FIJO"
-        },
-        {
             "proceso": "GESTION DOCUMENTAL",
             "cargo": "AUXILIAR GESTION DOCUMENTAL",
             "estado": "Congelado",
@@ -1197,6 +1169,26 @@
             "vinculacion": "FIJO"
         },
         {
+            "proceso": "INFECCIONES Y VIGILANCIA EPIDEMIOLOGICA",
+            "cargo": "ENFERMERO PROA",
+            "estado": "Reclutamiento",
+            "psicologa": "Susana",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "INFECCIONES Y VIGILANCIA EPIDEMIOLOGICA",
+            "cargo": "MEDICO SALUD PUBLICA",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
+            "vinculacion": "FIJO"
+        },
+        {
             "proceso": "JURIDICA",
             "cargo": "AUXILIAR ADMINISTRATIVO (A)",
             "estado": "Congelado",
@@ -1224,6 +1216,16 @@
             "obs": "nan",
             "tiempo": 1.0,
             "planta": 0.0,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "LABORATORIO CLINICO",
+            "cargo": "BACTERIOLOGO ESPECIAL EN MICROBIOLOGIA",
+            "estado": "Reclutamiento",
+            "psicologa": "Jhon",
+            "obs": "nan",
+            "tiempo": 1.0,
+            "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1314,16 +1316,6 @@
             "obs": "EN PROCESO 1",
             "tiempo": 2.0,
             "planta": 6.0,
-            "vinculacion": "FIJO"
-        },
-        {
-            "proceso": "PATOLOGIA",
-            "cargo": "COORDINADOR DE PATOLOGIA",
-            "estado": "Congelado",
-            "psicologa": "Carolina",
-            "obs": "ENTREVISTAS JEFE INMEDIATO",
-            "tiempo": 1.0,
-            "planta": 1.0,
             "vinculacion": "FIJO"
         },
         {
@@ -1504,6 +1496,26 @@
             "obs": "CONGELADA - PENDIENTE DEFINIR OPS",
             "tiempo": 1.5,
             "planta": 5.5,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SALUD REPRODUCTIVA Y SEXUAL",
+            "cargo": "GINECOLOGO",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 4.0,
+            "planta": 19.25,
+            "vinculacion": "FIJO"
+        },
+        {
+            "proceso": "SALUD REPRODUCTIVA Y SEXUAL",
+            "cargo": "MEDICO GENERAL",
+            "estado": "Reclutamiento",
+            "psicologa": "Carolina",
+            "obs": "nan",
+            "tiempo": 2.0,
+            "planta": 17.0,
             "vinculacion": "FIJO"
         },
         {
@@ -2035,7 +2047,7 @@
             ],
             "counts": [
                 112.0,
-                24.0,
+                33.0,
                 4.0,
                 3.0,
                 11.0,
